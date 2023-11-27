@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="mongo-jdbc-standalone-1.18">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/jar_files (1)/morphia-1.3.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jar_files/mongo-java-driver-3.12.14.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,22 +1,83 @@
 package BusinessLayer;
+import DAO.CategoryDAO;
+import DAO.ProductDAO;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
+import org.mongodb.morphia.annotations.Transient;
 
+import java.util.ArrayList;
+import java.util.List;
+@Entity("categories")
 public class Category {
+    @Id
     private String code;
     private String name;
     private String description;
-    public boolean add(Item item){
+    @Reference
+    private List<Category> subcategories = new ArrayList<>();
+
+    @Reference
+    private List<Product> products = new ArrayList<>();
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+
+    public boolean add(Product product){
+        products.add(product);
+        productDAO.createProduct(product);
         return true;
     }
 
-    public boolean remove(Item item){
+    public boolean remove(Product product){
+        products.removeIf(pro -> pro.getCode().equals(product.getCode()));
+        productDAO.deleteProduct(product);
         return true;
     }
 
     public boolean add(Category category){
+        subcategories.add(category);
+        categoryDAO.createCategory(category);
         return true;
     }
 
     public boolean remove(Category category){
+        categoryDAO.deleteCategory(category);
         return true;
     }
+
+    public List<Category> getSubcategories() {
+        return subcategories;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+    @Transient
+    ProductDAO productDAO=new ProductDAO();
+    @Transient
+    CategoryDAO categoryDAO=new CategoryDAO();
+
 }

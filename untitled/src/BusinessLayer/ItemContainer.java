@@ -1,21 +1,45 @@
 package BusinessLayer;
 
+//import DAO.ItemContainerDAO;
+import DAO.ItemDAO;
+import DAO.ProductDAO;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
+import org.mongodb.morphia.annotations.Transient;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 public abstract class ItemContainer {
-    protected String id;
+    @Id
+    protected ObjectId id;
+    @Reference
+    protected List<Item> items = new ArrayList<>();
 
-    public boolean add(Item item){
-        return true;
+    public abstract boolean add(Item item);
+
+    public abstract boolean remove(Item item);
+
+    public abstract boolean update(Item item, int quantity);
+
+    public abstract double total();
+
+    public ObjectId getId() {
+        return id;
     }
 
-    public boolean remove(Item item){
-        return true;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
-    public boolean update(Item item, int quantity){
-        return true;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public int total(){
-        return 0;
-    }
+    @Transient
+    ItemDAO itemDAO=new ItemDAO();
+
 }
