@@ -1,9 +1,6 @@
 import BusinessLayer.*;
-import DAO.CartDAO;
-import DAO.CategoryDAO;
+import DAO.*;
 //import DAO.OrderDAO;
-import DAO.OrderDAO;
-import DAO.ProductDAO;
 import org.bson.types.ObjectId;
 
 public class Main {
@@ -110,6 +107,11 @@ public class Main {
         OrderDAO orderDAO = new OrderDAO();
         orderDAO.createOrder(order);
         orderDAO.getOrder(order);
-
+//        User user = new Manager();
+//        user.setName("Muhammad Ahmad");
+//        user.setPassword("1234");
+//        UserDAO userDAO = new UserDAO();
+//        userDAO.createUser(user);
+//        System.out.println(userDAO.findUserByUsernameAndPassword("Muhammad Ahmad","1234").getName());
     }
 }
