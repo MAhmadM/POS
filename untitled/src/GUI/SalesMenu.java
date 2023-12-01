@@ -431,6 +431,7 @@ public class SalesMenu extends javax.swing.JFrame {
 
     private void CreateBillBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        
     }
 
     private void UpdateCartBtnActionPerformed(java.awt.event.ActionEvent evt) {
