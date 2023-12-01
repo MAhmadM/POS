@@ -42,9 +42,16 @@ public class Item {
         return price;
     }
 
+    public double getItemPrice() {
+        return price;
+    }
+
     public void setPrice() {
         this.price = product.getPrice() * quantityOrdered;
     }
 
+    public void setTotalPrice() {
+        this.price = product.getPrice() * quantityOrdered;
+    }
 
 }

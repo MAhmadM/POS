@@ -7,6 +7,8 @@ import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 
+import java.util.List;
+
 public class ProductDAO {
     private final Datastore datastore;
 
@@ -24,7 +26,6 @@ public class ProductDAO {
                 .field("products").hasThisOne(product);
         UpdateOperations<Category> ops = datastore.createUpdateOperations(Category.class)
                 .removeAll("products", product);
-        datastore.update(query, ops);
     }
 
     public Product findProductByName(String name) {
@@ -33,13 +34,21 @@ public class ProductDAO {
         return query.get();
     }
 
-    public void updateStockProduct(Product product) {
+    public void updateStockProduct(Product product)
+    {
         Query<Product> query = datastore.createQuery(Product.class)
                 .field("_id").equal(product.getCode());
 
         UpdateOperations<Product> ops = datastore.createUpdateOperations(Product.class)
                 .set("stockQuantity", product.getStockQuantity());
-
         datastore.update(query, ops);
     }
+
+
+
+    public List<Product> getAllProducts() {
+        Query<Product> query = datastore.createQuery(Product.class);
+        return query.asList();
+    }
+
 }

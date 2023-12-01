@@ -15,6 +15,8 @@ public class Product {
     private int stockQuantity;
     private double price;
 
+
+
     public String getCode() {
         return code;
     }
@@ -60,6 +62,29 @@ public class Product {
         this.stockQuantity = this.stockQuantity - num;
         productDAO.updateStockProduct(this);
         return true;
+    }
+
+    public List<Product> getAllProducts() {
+        return productDAO.getAllProducts();
+    }
+
+    public void display()
+    {
+        System.out.println( "Product: " + this.getName());
+        System.out.println( "Product: " + this.getCode());
+        System.out.println( "Product: " + this.getPrice());
+        System.out.println( "Product: " + this.getStockQuantity());
+    }
+
+    public Product copy()
+    {
+        Product p = new Product();
+        p.setCode(this.code);
+        p.setName(this.name);
+        p.setPrice(this.price);
+        p.setDescription(this.description);
+        p.setStockQuantity(this.stockQuantity);
+        return p;
     }
 
     public int getCurrentPrice(){

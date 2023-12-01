@@ -7,6 +7,10 @@ import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 import DAO.ProductDAO;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CategoryDAO {
     private final Datastore datastore;
     ProductDAO productDAO = new ProductDAO();
@@ -47,7 +51,29 @@ public class CategoryDAO {
 
         for (Product product : category.getProducts()) {
             System.out.println(indent + "Product: " + product.getName());
+            System.out.println(indent + "Product: " + product.getCode());
+            System.out.println(indent + "Product: " + product.getPrice());
+            System.out.println(indent + "Product: " + product.getStockQuantity());
+
         }
+    }
+
+
+    private List<Product> getAllInventory(Category category, int level) {
+        StringBuilder indent = new StringBuilder();
+        for (int i = 0; i < level; i++) {
+            indent.append("\t");
+        }
+        List<Product> AllProducts = new ArrayList<>();
+        for (Category subcategory : category.getSubcategories()) {
+            System.out.println(indent + "Subcategory: " + subcategory.getName());
+            displaySubcategoriesAndProducts(subcategory, level + 1);
+        }
+
+        for (Product product : category.getProducts()) {
+            AllProducts.add(product);
+        }
+        return AllProducts;
     }
 
     public void deleteCategory(Category category) {
