@@ -97,7 +97,9 @@ public class InventoryManagement extends javax.swing.JFrame {
         });
 
         InventoryList = getProductList();
-        InventoryList.remove(InventoryList.size()-1);
+
+        //InventoryList.remove(InventoryList.size()-1);
+
         DefaultTableModel model = (DefaultTableModel) InventoryTable.getModel();
         for (Product product : InventoryList)
         {
@@ -123,6 +125,7 @@ public class InventoryManagement extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
         jLabel5.setText("Existing Inventory");
 
         jLabel6.setText("Price");
@@ -159,11 +162,15 @@ public class InventoryManagement extends javax.swing.JFrame {
         jLabel8.setText("Description");
 
         jTextArea1.setColumns(20);
+
         jTextArea1.setRows(5);
+
         jScrollPane2.setViewportView(jTextArea1);
 
         Updatebtn1.setBackground(new java.awt.Color(255, 51, 51));
+
         Updatebtn1.setForeground(new java.awt.Color(255, 255, 255));
+
         Updatebtn1.setText("Delete Product");
         Updatebtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,6 +297,28 @@ public class InventoryManagement extends javax.swing.JFrame {
                 Cat.add(p);
                 CategoryDAO DAO = new CategoryDAO();
                 DAO.addanotherproduct(p,Cat);
+
+                //Displaying on the soame page
+                InventoryList.add(p);
+                DefaultTableModel model = (DefaultTableModel) InventoryTable.getModel();
+                model.setRowCount(0);
+                for (Product product : InventoryList)
+                {
+                    Object[] row = {
+                            product.getCode(),
+                            product.getName(),
+                            product.getStockQuantity(),
+                            product.getPrice(),
+                            product.getDescription()
+                    };
+                    model.addRow(row);
+                }
+
+
+
+
+
+
             }
             // else check to seleck a catagory
         }
