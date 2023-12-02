@@ -4,7 +4,9 @@
  */
 package GUI;
 
+import BusinessLayer.Cart;
 import BusinessLayer.Item;
+import BusinessLayer.ItemContainer;
 import BusinessLayer.Product;
 import DAO.ProductDAO;
 
@@ -108,9 +110,9 @@ public class SalesMenu extends javax.swing.JFrame {
         }
         //adding all the list of products in the table model
         InventoryList = getProductList();
-        InventoryList.remove(InventoryList.size()-1);
+     //   InventoryList.remove(InventoryList.size()-1);
         SearchProductList = getProductList();
-        SearchProductList.remove(SearchProductList.size()-1);
+      //  SearchProductList.remove(SearchProductList.size()-1);
 
         DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
         for (Product product : SearchProductList)
@@ -431,9 +433,9 @@ public class SalesMenu extends javax.swing.JFrame {
 
     private void CreateBillBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        
+        ItemContainer Container = new Cart();
+        //Container.
     }
-
     private void UpdateCartBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if(SelectedCartItem!=null)

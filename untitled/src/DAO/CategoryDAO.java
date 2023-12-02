@@ -13,6 +13,7 @@ import java.util.List;
 
 public class CategoryDAO {
     private final Datastore datastore;
+    List<String> names =  new ArrayList<>();
     ProductDAO productDAO = new ProductDAO();
     public CategoryDAO() {
         this.datastore = MongoDBConnection.getDatastore();
@@ -37,7 +38,15 @@ public class CategoryDAO {
             System.out.println("Category not found.");
         }
     }
-
+    public List<String> getSubcategories(Category category){
+        for (Category subcategory : category.getSubcategories()) {
+            if(subcategory.getSubcategories().isEmpty()) {
+                names.add(subcategory.getName());
+            }
+            getSubcategories(subcategory);
+        }
+        return names;
+    }
     private void displaySubcategoriesAndProducts(Category category, int level) {
         StringBuilder indent = new StringBuilder();
         for (int i = 0; i < level; i++) {
@@ -74,6 +83,16 @@ public class CategoryDAO {
             AllProducts.add(product);
         }
         return AllProducts;
+    }
+
+    public void addanotherproduct(Product product, Category category)
+    {
+        Query<Category> query = datastore.createQuery(Category.class)
+                .field("_id").equal(category.getCode());
+
+        UpdateOperations<Category> ops = datastore.createUpdateOperations(Category.class)
+                .add("products", product);
+        datastore.update(query, ops);
     }
 
     public void deleteCategory(Category category) {

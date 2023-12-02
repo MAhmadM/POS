@@ -43,6 +43,11 @@ public class Category {
         this.description = description;
     }
 
+    public Category getCategorybyName(String name)
+    {
+        Category categoryByName = categoryDAO.findCategoryByName(name);
+        return categoryByName;
+    }
 
 
     public boolean add(Product product){
@@ -71,7 +76,9 @@ public class Category {
     public List<Category> getSubcategories() {
         return subcategories;
     }
-
+    public List<String> getCategories(){
+        return categoryDAO.getSubcategories(categoryDAO.findCategoryByName("Main Category"));
+    }
     public List<Product> getProducts() {
         return products;
     }

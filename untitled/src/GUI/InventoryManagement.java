@@ -4,12 +4,21 @@
  */
 package GUI;
 
+import BusinessLayer.Category;
+import BusinessLayer.Product;
+import DAO.CategoryDAO;
+import DAO.ProductDAO;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author Ahmad Khakan
  */
 public class InventoryManagement extends javax.swing.JFrame {
-
+    Category category= new Category();
+    List<Product> InventoryList;
     /**
      * Creates new form InventoryManagement
      */
@@ -80,10 +89,29 @@ public class InventoryManagement extends javax.swing.JFrame {
                     false, false, false, false, false
             };
 
+
+
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+
+        InventoryList = getProductList();
+        InventoryList.remove(InventoryList.size()-1);
+        DefaultTableModel model = (DefaultTableModel) InventoryTable.getModel();
+        for (Product product : InventoryList)
+        {
+            Object[] row = {
+                    product.getCode(),
+                    product.getName(),
+                    product.getStockQuantity(),
+                    product.getPrice(),
+                    product.getDescription()
+            };
+            model.addRow(row);
+        }
+
+
         jScrollPane1.setViewportView(InventoryTable);
 
         jLabel4.setText("Code");
@@ -121,7 +149,7 @@ public class InventoryManagement extends javax.swing.JFrame {
 
         jLabel7.setText("Category");
 
-        CategoryDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CategoryDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(category.getCategories().toArray(new String[0])));
         CategoryDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CategoryDropDownActionPerformed(evt);
@@ -245,10 +273,27 @@ public class InventoryManagement extends javax.swing.JFrame {
 
     private void AddProductbtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        if(ProductTextField.getText()!="" && Code_idTextField.getText()!=""  )
+        if(!ProductTextField.getText().isEmpty() && !Code_idTextField.getText().isEmpty() &&  !PriceTextField.getText().isEmpty() && !QuantityTestField.getText().isEmpty() && !jTextArea1.getText().isEmpty() )
         {
+            if (CategoryDropDown.getSelectedItem() != null && !CategoryDropDown.getSelectedItem().toString().equals("Null"))
+            {
+                System.out.println("HEllo");
+                Product p =  new Product();
+                p.setCode(Code_idTextField.getText());
+                p.setName(ProductTextField.getText());
+                p.setStockQuantity(Integer.parseInt(QuantityTestField.getText()));
+                p.setPrice(Integer.parseInt(PriceTextField.getText()));
+                p.setDescription(jTextArea1.getText());
 
+                Category Cat = new Category();
+                Cat = Cat.getCategorybyName(CategoryDropDown.getSelectedItem().toString());
+                Cat.add(p);
+                CategoryDAO DAO = new CategoryDAO();
+                DAO.addanotherproduct(p,Cat);
+            }
+            // else check to seleck a catagory
         }
+        //else where Dialoge Message of Missing attributes is written
     }
 
     private void Code_idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,4 +369,11 @@ public class InventoryManagement extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration
+
+
+    private List<Product> getProductList() {
+
+        ProductDAO productDAO = new ProductDAO();
+        return productDAO.getAllProducts();
+    }
 }
