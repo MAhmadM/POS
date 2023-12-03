@@ -9,6 +9,8 @@ import BusinessLayer.Product;
 import DAO.CategoryDAO;
 import DAO.ProductDAO;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -19,6 +21,8 @@ import java.util.List;
 public class InventoryManagement extends javax.swing.JFrame {
     Category category= new Category();
     List<Product> InventoryList;
+
+    Product SelectedProduct;
     /**
      * Creates new form InventoryManagement
      */
@@ -112,7 +116,29 @@ public class InventoryManagement extends javax.swing.JFrame {
             };
             model.addRow(row);
         }
+        InventoryTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = InventoryTable.getSelectedRow();
+                    if (selectedRow != -1) {
+                        //Selected Product from inventory
+                        SelectedProduct = InventoryList.get(selectedRow);
+                        SelectedProduct.display();
 
+                        //Testfields Registeration
+                        ProductTextField.setText(SelectedProduct.getName());
+                        Code_idTextField.setText(SelectedProduct.getCode());
+                        QuantityTestField.setText(String.valueOf(SelectedProduct.getStockQuantity()));
+                        // Row is selected, do something with the selected row index
+                        System.out.println("Selected Row Index: " + selectedRow);
+                        String code = InventoryTable.getValueAt(selectedRow, 0).toString();
+                        String name = InventoryTable.getValueAt(selectedRow, 1).toString();
+                        System.out.println("Selected Row Data: Code=" + code + ", Name=" + name);
+                    }
+                }
+            }
+        });
 
         jScrollPane1.setViewportView(InventoryTable);
 
@@ -313,11 +339,6 @@ public class InventoryManagement extends javax.swing.JFrame {
                     };
                     model.addRow(row);
                 }
-
-
-
-
-
 
             }
             // else check to seleck a catagory
