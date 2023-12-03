@@ -44,7 +44,7 @@ public class Main {
 
         Product product2 = new Product();
         product2.setCode("2");
-        product2.setName("Product 2");
+        product2.setName("Poko");
         product2.setPrice(15.0);
         product2.setStockQuantity(50);
 
@@ -113,6 +113,6 @@ public class Main {
 //        UserDAO userDAO = new UserDAO();
 //        userDAO.createUser(user);
 //        System.out.println(userDAO.findUserByUsernameAndPassword("Muhammad Ahmad","1234").getName());
-        System.out.println(product2.getCategoryofProduct(mainCategory));
+        System.out.println("achaaa"+product2.getCategoryofProduct());
     }
 }

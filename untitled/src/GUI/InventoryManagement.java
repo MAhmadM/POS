@@ -12,6 +12,7 @@ import DAO.ProductDAO;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,7 +59,7 @@ public class InventoryManagement extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        Updatebtn1 = new javax.swing.JButton();
+        Deletebtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,11 +74,11 @@ public class InventoryManagement extends javax.swing.JFrame {
             }
         });
 
-        QuantityTestField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QuantityTestFieldActionPerformed(evt);
-            }
-        });
+//        QuantityTestField.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                QuantityTestFieldActionPerformed(evt);
+//            }
+//        });
 
         jLabel3.setText("Quantity");
 
@@ -130,6 +131,10 @@ public class InventoryManagement extends javax.swing.JFrame {
                         ProductTextField.setText(SelectedProduct.getName());
                         Code_idTextField.setText(SelectedProduct.getCode());
                         QuantityTestField.setText(String.valueOf(SelectedProduct.getStockQuantity()));
+                        PriceTextField.setText(String.valueOf(SelectedProduct.getPrice()));
+                        jTextArea1.setText(SelectedProduct.getDescription());
+                        CategoryDropDown.setSelectedItem(SelectedProduct.getCategoryofProduct());
+
                         // Row is selected, do something with the selected row index
                         System.out.println("Selected Row Index: " + selectedRow);
                         String code = InventoryTable.getValueAt(selectedRow, 0).toString();
@@ -156,11 +161,11 @@ public class InventoryManagement extends javax.swing.JFrame {
 
         jLabel6.setText("Price");
 
-        PriceTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PriceTextFieldActionPerformed(evt);
-            }
-        });
+//        PriceTextField.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                PriceTextFieldActionPerformed(evt);
+//            }
+//        });
 
         AddProductbtn.setText("Add New Product");
         AddProductbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -178,12 +183,20 @@ public class InventoryManagement extends javax.swing.JFrame {
 
         jLabel7.setText("Category");
 
-        CategoryDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(category.getCategories().toArray(new String[0])));
-        CategoryDropDown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CategoryDropDownActionPerformed(evt);
-            }
-        });
+//
+        List<String> categoriesList=new ArrayList<>();
+        categoriesList.add("");
+        categoriesList.addAll(category.getCategories());
+        String[] categoriesArray = categoriesList.toArray(new String[0]);
+        CategoryDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(categoriesArray));
+
+
+        //CategoryDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(category.getCategories().toArray(new String[0])));
+//        CategoryDropDown.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                CategoryDropDownActionPerformed(evt);
+//            }
+//        });
 
         jLabel8.setText("Description");
 
@@ -193,14 +206,14 @@ public class InventoryManagement extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jTextArea1);
 
-        Updatebtn1.setBackground(new java.awt.Color(255, 51, 51));
+        Deletebtn.setBackground(new java.awt.Color(255, 51, 51));
 
-        Updatebtn1.setForeground(new java.awt.Color(255, 255, 255));
+        Deletebtn.setForeground(new java.awt.Color(255, 255, 255));
 
-        Updatebtn1.setText("Delete Product");
-        Updatebtn1.addActionListener(new java.awt.event.ActionListener() {
+        Deletebtn.setText("Delete Product");
+        Deletebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Updatebtn1ActionPerformed(evt);
+                DeletebtnActionPerformed(evt);
             }
         });
 
@@ -241,7 +254,7 @@ public class InventoryManagement extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(179, 179, 179)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(Updatebtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(Deletebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(Updatebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(AddProductbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGap(206, 206, 206))))
@@ -284,7 +297,7 @@ public class InventoryManagement extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(Updatebtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(Updatebtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                                                .addComponent(Deletebtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                                         .addComponent(jScrollPane1))
                                 .addGap(18, 18, 18))
         );
@@ -292,74 +305,161 @@ public class InventoryManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void QuantityTestFieldActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void PriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
     private void UpdatebtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        if( !ProductTextField.getText().isEmpty() && !Code_idTextField.getText().isEmpty() &&  !PriceTextField.getText().isEmpty() && !QuantityTestField.getText().isEmpty() && !jTextArea1.getText().isEmpty() )
+        {
+            if (CategoryDropDown.getSelectedItem() != null && !CategoryDropDown.getSelectedItem().toString().equals(""))
+            {
+                //Breaking Comditions
+                if(!Code_idTextField.getText().equals(SelectedProduct.getCode()))
+                {
+                    //Display Message ID cannot be Updated for a same product
+                    System.out.println("Display Message ID cannot be Updated for a same product");
+                    return;
+                }
+
+                Product Change = new Product();
+                Change.setCode(Code_idTextField.getText());
+                Change.setName(ProductTextField.getText());
+                Change.setStockQuantity(Integer.parseInt(QuantityTestField.getText()));
+                Change.setPrice(Double.parseDouble(PriceTextField.getText()));
+                Change.setDescription(jTextArea1.getText());
+                //Updating
+
+
+                SelectedProduct.delete();
+                Category Cat = new Category();
+                Cat = Cat.getCategorybyName(CategoryDropDown.getSelectedItem().toString());
+                Cat.add(Change);
+                CategoryDAO DAO = new CategoryDAO();
+                DAO.addanotherproduct(Change, Cat);
+
+                updateData();
+                UpdateField();
+            }
+            // else check to seleck a catagory
+
+        }
+
+
     }
 
     private void AddProductbtnActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        if(!ProductTextField.getText().isEmpty() && !Code_idTextField.getText().isEmpty() &&  !PriceTextField.getText().isEmpty() && !QuantityTestField.getText().isEmpty() && !jTextArea1.getText().isEmpty() )
-        {
+
+        if(!ProductTextField.getText().isEmpty() && !Code_idTextField.getText().isEmpty() &&  !PriceTextField.getText().isEmpty() && !QuantityTestField.getText().isEmpty() && !jTextArea1.getText().isEmpty() ) {
             if (CategoryDropDown.getSelectedItem() != null && !CategoryDropDown.getSelectedItem().toString().equals("Null"))
             {
                 System.out.println("HEllo");
-                Product p =  new Product();
+                Product p = new Product();
                 p.setCode(Code_idTextField.getText());
                 p.setName(ProductTextField.getText());
                 p.setStockQuantity(Integer.parseInt(QuantityTestField.getText()));
-                p.setPrice(Integer.parseInt(PriceTextField.getText()));
+                p.setPrice(Double.parseDouble(PriceTextField.getText()));
                 p.setDescription(jTextArea1.getText());
 
                 Category Cat = new Category();
                 Cat = Cat.getCategorybyName(CategoryDropDown.getSelectedItem().toString());
                 Cat.add(p);
                 CategoryDAO DAO = new CategoryDAO();
-                DAO.addanotherproduct(p,Cat);
+                DAO.addanotherproduct(p, Cat);
 
                 //Displaying on the soame page
-                InventoryList.add(p);
-                DefaultTableModel model = (DefaultTableModel) InventoryTable.getModel();
-                model.setRowCount(0);
-                for (Product product : InventoryList)
-                {
-                    Object[] row = {
-                            product.getCode(),
-                            product.getName(),
-                            product.getStockQuantity(),
-                            product.getPrice(),
-                            product.getDescription()
-                    };
-                    model.addRow(row);
-                }
-
+                //InventoryList.add(p);
+                updateData();
+                UpdateField();
             }
-            // else check to seleck a catagory
         }
-        //else where Dialoge Message of Missing attributes is written
+               //else where Dialoge Message of Missing attributes is written
+
     }
+
 
     private void Code_idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+//        for(Product p : InventoryList)
+//        {
+//            if(Code_idTextField.getText().equals(p.getCode()))
+//            {
+//                System.out.println("This Item is Already Taken");
+//            }
+//        }
     }
 
     private void ProductTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void CategoryDropDownActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
-    private void Updatebtn1ActionPerformed(java.awt.event.ActionEvent evt) {
+
+    private void DeletebtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        if(SelectedProduct!=null) {
+            SelectedProduct.delete();
+            updateData();
+            UpdateField();
+//            InventoryList = getProductList();
+//            DefaultTableModel model = (DefaultTableModel) InventoryTable.getModel();
+//            model.setRowCount(0);
+//            for (Product product : InventoryList) {
+//                Object[] row = {
+//                        product.getCode(),
+//                        product.getName(),
+//                        product.getStockQuantity(),
+//                        product.getPrice(),
+//                        product.getDescription()
+//                };
+//                model.addRow(row);
+//            }
+        }
+//        if(!ProductTextField.getText().isEmpty() && !Code_idTextField.getText().isEmpty() &&  !PriceTextField.getText().isEmpty() && !QuantityTestField.getText().isEmpty() && !jTextArea1.getText().isEmpty() )
+//        {
+//            if (CategoryDropDown.getSelectedItem() != null && !CategoryDropDown.getSelectedItem().toString().equals("Null"))
+//            {
+//                System.out.println("HEllo");
+//                Product p =  new Product();
+//                p.setCode(Code_idTextField.getText());
+//                p.setName(ProductTextField.getText());
+//                p.setStockQuantity(Integer.parseInt(QuantityTestField.getText()));
+//                p.setPrice(Integer.parseInt(PriceTextField.getText()));
+//                p.setDescription(jTextArea1.getText());
+//
+//
+//                Category Cat = new Category();
+//                Cat = Cat.getCategorybyName(CategoryDropDown.getSelectedItem().toString());
+//                Cat.add(p);
+//                CategoryDAO DAO = new CategoryDAO();
+//                DAO.addanotherproduct(p,Cat);
+//
+//                //Displaying on the soame page
+//                InventoryList.add(p);
+//                DefaultTableModel model = (DefaultTableModel) InventoryTable.getModel();
+//                model.setRowCount(0);
+//                for (Product product : InventoryList)
+//                {
+//                    Object[] row = {
+//                            product.getCode(),
+//                            product.getName(),
+//                            product.getStockQuantity(),
+//                            product.getPrice(),
+//                            product.getDescription()
+//                    };
+//                    model.addRow(row);
+//                }
+//                ProductTextField.setText("");
+//                Code_idTextField.setText("");
+//                QuantityTestField.setText("");
+//                PriceTextField.setText("");
+//                jTextArea1.setText("");
+//                CategoryDropDown.setSelectedItem("");
+//                SelectedProduct=null;
+//            }
+//            // else check to seleck a catagory
+//        }
+//        //else where Dialoge Message of Missing attributes is written
+        System.out.println("Button 1");
     }
 
     /**
@@ -406,7 +506,7 @@ public class InventoryManagement extends javax.swing.JFrame {
     private javax.swing.JTextField ProductTextField;
     private javax.swing.JTextField QuantityTestField;
     private javax.swing.JButton Updatebtn;
-    private javax.swing.JButton Updatebtn1;
+    private javax.swing.JButton Deletebtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -422,8 +522,31 @@ public class InventoryManagement extends javax.swing.JFrame {
 
 
     private List<Product> getProductList() {
-
         ProductDAO productDAO = new ProductDAO();
         return productDAO.getAllProducts();
+    }
+    private  void UpdateField(){
+        ProductTextField.setText("");
+        Code_idTextField.setText("");
+        QuantityTestField.setText("");
+        PriceTextField.setText("");
+        jTextArea1.setText("");
+        CategoryDropDown.setSelectedItem("");
+        SelectedProduct = null;
+    }
+    public void updateData(){
+        InventoryList = getProductList();
+        DefaultTableModel model = (DefaultTableModel) InventoryTable.getModel();
+        model.setRowCount(0);
+        for (Product product : InventoryList) {
+            Object[] row = {
+                    product.getCode(),
+                    product.getName(),
+                    product.getStockQuantity(),
+                    product.getPrice(),
+                    product.getDescription()
+            };
+            model.addRow(row);
+        }
     }
 }

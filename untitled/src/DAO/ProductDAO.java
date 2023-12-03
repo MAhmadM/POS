@@ -8,6 +8,7 @@ import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductDAO {
     private final Datastore datastore;
@@ -27,6 +28,7 @@ public class ProductDAO {
                 .field("products").hasThisOne(product);
         UpdateOperations<Category> ops = datastore.createUpdateOperations(Category.class)
                 .removeAll("products", product);
+        datastore.update(query, ops);
     }
 
     public Product findProductByName(String name) {
@@ -45,23 +47,38 @@ public class ProductDAO {
         datastore.update(query, ops);
     }
 
-    public String getCategoryofProduct(Category category, Product P){
+    public void updateProduct(Product product)
+    {
+        Query<Product> query = datastore.createQuery(Product.class)
+                .field("_id").equal(product.getCode());
+
+        UpdateOperations<Product> ops = datastore.createUpdateOperations(Product.class)
+                .set("name", product.getName())
+                .set("price", product.getPrice())
+                .set("stockQuantity", product.getStockQuantity())
+                .set("description", product.getDescription());
+        datastore.update(query, ops);
+    }
+
+    public String getCategoryofProduct(Category category, Product P) {
         for (Category subcategory : category.getSubcategories()) {
-            if(subcategory.getSubcategories().isEmpty()) {
-                if(!subcategory.getProducts().isEmpty()){
-                    for(Product product : subcategory.getProducts())
-                    {
-                        if(product.getName()==P.getName())
-                            return subcategory.getName();
-                    }
+            for (Product product : subcategory.getProducts()) {
+                System.out.println(product.getName() + P.getName());
+                if (Objects.equals(product.getName(), P.getName())) {
+                    System.out.println("hehehe");
+                    return subcategory.getName();
                 }
+            }
+            String result = getCategoryofProduct(subcategory, P);
+            if (!result.isEmpty()) {
+                return result;
             }
         }
         return "";
     }
 
     public List<Product> getAllProducts() {
-        Query<Product> query = datastore.createQuery(Product.class);
+        Query<Product> query = datastore.createQuery(Product.class).order("_id");
         return query.asList();
     }
 

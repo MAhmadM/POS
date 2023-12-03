@@ -1,4 +1,5 @@
 package BusinessLayer;
+import DAO.CategoryDAO;
 import DAO.ProductDAO;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -100,8 +101,8 @@ public class Product {
         return productDAO.getAllProducts();
     }
 
-    public String getCategoryofProduct(Category category){
-        return productDAO.getCategoryofProduct(category,this);
+    public String getCategoryofProduct(){
+        return productDAO.getCategoryofProduct(categoryDAO.findCategoryByName("Main Category"),this);
     }
     public void display()
     {
@@ -128,5 +129,14 @@ public class Product {
     }
     @Transient
     ProductDAO productDAO=new ProductDAO();
+    @Transient
+    CategoryDAO categoryDAO=new CategoryDAO();
 
+    public void updateProduct(Product change) {
+        productDAO.updateProduct(change);
+    }
+
+    public void delete() {
+        productDAO.deleteProduct(this);
+    }
 }
