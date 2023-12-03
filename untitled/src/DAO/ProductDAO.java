@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ProductDAO {
     private final Datastore datastore;
+    private List<String> categoryNames;
 
     public ProductDAO() {
         this.datastore = MongoDBConnection.getDatastore();
@@ -44,7 +45,20 @@ public class ProductDAO {
         datastore.update(query, ops);
     }
 
-
+    public String getCategoryofProduct(Category category, Product P){
+        for (Category subcategory : category.getSubcategories()) {
+            if(subcategory.getSubcategories().isEmpty()) {
+                if(!subcategory.getProducts().isEmpty()){
+                    for(Product product : subcategory.getProducts())
+                    {
+                        if(product.getName()==P.getName())
+                            return subcategory.getName();
+                    }
+                }
+            }
+        }
+        return "";
+    }
 
     public List<Product> getAllProducts() {
         Query<Product> query = datastore.createQuery(Product.class);

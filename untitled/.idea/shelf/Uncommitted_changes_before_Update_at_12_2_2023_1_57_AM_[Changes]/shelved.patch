@@ -1,0 +1,778 @@
+Index: src/GUI/LoginGUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GUI;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\n\r\npublic class LoginGUI extends JFrame {\r\n\r\n    public LoginGUI() {\r\n        setTitle(\"Pharmacy Login\");\r\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n        setSize(400, 300);\r\n        setLocationRelativeTo(null);\r\n\r\n        initUI();\r\n    }\r\n\r\n    private void initUI() {\r\n        // Heading Panel\r\n        JPanel headingPanel = createHeadingPanel();\r\n\r\n        // Input Panel\r\n        JPanel inputPanel = createInputPanel();\r\n\r\n        // Main Panel\r\n        JPanel mainPanel = new JPanel(new BorderLayout());\r\n        mainPanel.add(headingPanel, BorderLayout.NORTH);\r\n        mainPanel.add(inputPanel, BorderLayout.CENTER);\r\n\r\n        add(mainPanel);\r\n        setResizable(false);\r\n    }\r\n\r\n    private JPanel createHeadingPanel() {\r\n        JPanel headingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));\r\n        JLabel headingLabel = new JLabel(\"Pharmacy Login\");\r\n        headingLabel.setFont(new Font(\"Arial\", Font.BOLD, 24));\r\n        headingPanel.add(headingLabel);\r\n\r\n        return headingPanel;\r\n    }\r\n\r\n    private JPanel createInputPanel() {\r\n        JPanel inputPanel = new JPanel(new GridBagLayout()); // Using GridBagLayout for more precise control\r\n        GridBagConstraints gbc = new GridBagConstraints();\r\n        gbc.insets = new Insets(5, 5, 5, 5); // Padding between components\r\n\r\n        JLabel welcomeLabel = new JLabel(\"Welcome to our pharmacy login page.\");\r\n        gbc.gridx = 0;\r\n        gbc.gridy = 0;\r\n        gbc.gridwidth = 2; // Span two columns\r\n        inputPanel.add(welcomeLabel, gbc);\r\n\r\n        JLabel usernameLabel = new JLabel(\"Username:\");\r\n        gbc.gridx = 0;\r\n        gbc.gridy = 1;\r\n        gbc.gridwidth = 1; // Reset gridwidth\r\n        inputPanel.add(usernameLabel, gbc);\r\n\r\n        JTextField usernameTextField = new JTextField(15); // Adjusted size of text field\r\n        gbc.gridx = 1;\r\n        inputPanel.add(usernameTextField, gbc);\r\n\r\n        JLabel passwordLabel = new JLabel(\"Password:\");\r\n        gbc.gridx = 0;\r\n        gbc.gridy = 2;\r\n        inputPanel.add(passwordLabel, gbc);\r\n\r\n        JPasswordField passwordTextField = new JPasswordField(15); // Adjusted size of password field\r\n        gbc.gridx = 1;\r\n        inputPanel.add(passwordTextField, gbc);\r\n\r\n        JButton loginButton = new JButton(\"Login\");\r\n        gbc.gridx = 1;\r\n        gbc.gridy = 3;\r\n        gbc.insets = new Insets(10, 5, 5, 5); // Adjusted padding for the button\r\n        inputPanel.add(loginButton, gbc);\r\n\r\n        return inputPanel;\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        SwingUtilities.invokeLater(() -> {\r\n            LoginGUI login = new LoginGUI();\r\n            login.setVisible(true);\r\n        });\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GUI/LoginGUI.java b/src/GUI/LoginGUI.java
+--- a/src/GUI/LoginGUI.java	(revision 09b590afd8f1e713d7bc3331c8a8bf1e18190098)
++++ b/src/GUI/LoginGUI.java	(date 1701141845183)
+@@ -1,9 +1,16 @@
+ package GUI;
+ 
++import BusinessLayer.User;
++
+ import javax.swing.*;
+ import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.util.EventListener;
+ 
+ public class LoginGUI extends JFrame {
++    User user = new User();
++    private JButton button1;
+ 
+     public LoginGUI() {
+         setTitle("Pharmacy Login");
+@@ -12,6 +19,7 @@
+         setLocationRelativeTo(null);
+ 
+         initUI();
++
+     }
+ 
+     private void initUI() {
+@@ -70,6 +78,12 @@
+         inputPanel.add(passwordTextField, gbc);
+ 
+         JButton loginButton = new JButton("Login");
++        loginButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                System.out.println(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getId());
++            }
++        });
+         gbc.gridx = 1;
+         gbc.gridy = 3;
+         gbc.insets = new Insets(10, 5, 5, 5); // Adjusted padding for the button
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-232.10203.10\">\r\n    <data-source name=\"POS@localhost\" uuid=\"d4d52dea-bfe3-4a1f-b653-d3f8d053131d\">\r\n      <database-info product=\"Mongo DB\" version=\"6.0.8\" jdbc-version=\"4.2\" driver-name=\"MongoDB JDBC Driver\" driver-version=\"1.18\" dbms=\"MONGO\" exact-version=\"6.0.8\" exact-driver-version=\"1.18\" />\r\n      <case-sensitivity plain-identifiers=\"mixed\" quoted-identifiers=\"mixed\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <auth-provider>no-auth</auth-provider>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"schema\" negative=\"1\" />\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 09b590afd8f1e713d7bc3331c8a8bf1e18190098)
++++ b/.idea/dataSources.local.xml	(date 1701448526748)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-232.10203.10">
++  <component name="dataSourceStorageLocal" created-in="IU-232.10227.8">
+     <data-source name="POS@localhost" uuid="d4d52dea-bfe3-4a1f-b653-d3f8d053131d">
+       <database-info product="Mongo DB" version="6.0.8" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.18" dbms="MONGO" exact-version="6.0.8" exact-driver-version="1.18" />
+       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3e6f4d22-b3f2-4551-93ce-7cec2fe66066\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/BusinessLayer/Manager.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/BusinessLayer/Manager.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/BusinessLayer/Role.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/BusinessLayer/Role.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/BusinessLayer/SalesAssistant.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/BusinessLayer/SalesAssistant.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/BusinessLayer/User.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/BusinessLayer/User.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2YQ6JUZwiEQdy1NlzVOCUFfXZEr\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"last_opened_file_path\": \"C:/Users/Acer/Downloads/jar_files (1)/cglib-nodep-2.2.2.jar\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"project.structure.last.edited\": \"Libraries\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  },\r\n  \"keyToStringList\": {\r\n    \"DatabaseDriversLRU\": [\r\n      \"mongo\"\r\n    ]\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3e6f4d22-b3f2-4551-93ce-7cec2fe66066\" name=\"Changes\" comment=\"\" />\r\n      <created>1700445386644</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1700445386644</updated>\r\n      <workItem from=\"1700445387704\" duration=\"17000\" />\r\n      <workItem from=\"1700445512984\" duration=\"2764000\" />\r\n      <workItem from=\"1700925966247\" duration=\"49979000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 09b590afd8f1e713d7bc3331c8a8bf1e18190098)
++++ b/.idea/workspace.xml	(date 1701464128407)
+@@ -5,12 +5,12 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="3e6f4d22-b3f2-4551-93ce-7cec2fe66066" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Manager.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Role.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/SalesAssistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/SalesAssistant.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/User.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/DAO/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ProductDAO.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI.form" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -44,7 +44,7 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "WebServerToolWindowFactoryState": "false",
+-    "last_opened_file_path": "C:/Users/Acer/Downloads/jar_files (1)/cglib-nodep-2.2.2.jar",
++    "last_opened_file_path": "E:/POS/POS/untitled/src/DAO/ProductDAO.java",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+@@ -52,6 +52,7 @@
+     "project.structure.last.edited": "Libraries",
+     "project.structure.proportion": "0.15",
+     "project.structure.side.proportion": "0.2",
++    "two.files.diff.last.used.file": "E:/POS/POS/untitled/src/DAO/ProductDAO.java",
+     "vue.rearranger.settings.migration": "true"
+   },
+   "keyToStringList": {
+@@ -70,11 +71,23 @@
+       <updated>1700445386644</updated>
+       <workItem from="1700445387704" duration="17000" />
+       <workItem from="1700445512984" duration="2764000" />
+-      <workItem from="1700925966247" duration="49979000" />
++      <workItem from="1700925966247" duration="56957000" />
++      <workItem from="1701448118224" duration="1449000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+ </project>
+\ No newline at end of file
+Index: .idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<dataSource name=\"POS@localhost\">\r\n  <database-model serializer=\"dbm\" dbms=\"MONGO\" family-id=\"MONGO\" format-version=\"4.49\">\r\n    <root id=\"1\">\r\n      <ServerVersion>6.0.8</ServerVersion>\r\n    </root>\r\n    <schema id=\"2\" parent=\"1\" name=\"POS\">\r\n      <Current>1</Current>\r\n      <LocalIntrospectionTimestamp>2023-11-28.03:04:46</LocalIntrospectionTimestamp>\r\n    </schema>\r\n    <schema id=\"3\" parent=\"1\" name=\"admin\">\r\n      <LocalIntrospectionTimestamp>2023-11-26.18:59:00</LocalIntrospectionTimestamp>\r\n    </schema>\r\n    <schema id=\"4\" parent=\"1\" name=\"config\">\r\n      <LocalIntrospectionTimestamp>2023-11-26.18:59:00</LocalIntrospectionTimestamp>\r\n    </schema>\r\n    <schema id=\"5\" parent=\"1\" name=\"local\">\r\n      <LocalIntrospectionTimestamp>2023-11-26.18:59:00</LocalIntrospectionTimestamp>\r\n    </schema>\r\n    <table id=\"6\" parent=\"2\" name=\"cart\"/>\r\n    <table id=\"7\" parent=\"2\" name=\"categories\"/>\r\n    <table id=\"8\" parent=\"2\" name=\"items\"/>\r\n    <table id=\"9\" parent=\"2\" name=\"order\"/>\r\n    <table id=\"10\" parent=\"2\" name=\"products\"/>\r\n    <table id=\"11\" parent=\"2\" name=\"user\"/>\r\n    <table id=\"12\" parent=\"4\" name=\"system.sessions\"/>\r\n    <table id=\"13\" parent=\"5\" name=\"startup_log\"/>\r\n    <column id=\"14\" parent=\"6\" name=\"_id\">\r\n      <DasType>ObjectId|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"15\" parent=\"6\" name=\"className\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"16\" parent=\"6\" name=\"items\">\r\n      <DasType>Array|2003s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"17\" parent=\"7\" name=\"_id\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"18\" parent=\"7\" name=\"className\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"19\" parent=\"7\" name=\"name\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"20\" parent=\"7\" name=\"subcategories\">\r\n      <DasType>Array|2003s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"21\" parent=\"7\" name=\"products\">\r\n      <DasType>Array|2003s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"22\" parent=\"7\" name=\"description\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"23\" parent=\"8\" name=\"_id\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"24\" parent=\"8\" name=\"className\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"25\" parent=\"8\" name=\"price\">\r\n      <DasType>Double|8s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"26\" parent=\"8\" name=\"quantityOrdered\">\r\n      <DasType>Int32|4s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"27\" parent=\"8\" name=\"product\">\r\n      <DasType>DBRef|12s</DasType>\r\n      <Position>2</Position>\r\n    </column>\r\n    <column id=\"28\" parent=\"9\" name=\"_id\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"29\" parent=\"9\" name=\"className\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"30\" parent=\"9\" name=\"customer\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"31\" parent=\"9\" name=\"items\">\r\n      <DasType>Array|2003s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"32\" parent=\"9\" name=\"time\">\r\n      <DasType>ISODate|91s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"33\" parent=\"10\" name=\"_id\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"34\" parent=\"10\" name=\"name\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"35\" parent=\"10\" name=\"price\">\r\n      <DasType>Double|8s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"36\" parent=\"10\" name=\"stockQuantity\">\r\n      <DasType>Int32|4s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"37\" parent=\"10\" name=\"className\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>2</Position>\r\n    </column>\r\n    <column id=\"38\" parent=\"11\" name=\"_id\">\r\n      <DasType>ObjectId|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"39\" parent=\"11\" name=\"className\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"40\" parent=\"11\" name=\"password\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"41\" parent=\"11\" name=\"role\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"42\" parent=\"11\" name=\"username\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"43\" parent=\"13\" name=\"_id\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>1</Position>\r\n    </column>\r\n    <column id=\"44\" parent=\"13\" name=\"buildinfo\">\r\n      <DasType>Object|4999544s</DasType>\r\n      <Position>2</Position>\r\n    </column>\r\n    <column id=\"45\" parent=\"13\" name=\"buildinfo.allocator\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>3</Position>\r\n    </column>\r\n    <column id=\"46\" parent=\"13\" name=\"buildinfo.bits\">\r\n      <DasType>Int32|4s</DasType>\r\n      <Position>4</Position>\r\n    </column>\r\n    <column id=\"47\" parent=\"13\" name=\"buildinfo.buildEnvironment\">\r\n      <DasType>Object|4999544s</DasType>\r\n      <Position>5</Position>\r\n    </column>\r\n    <column id=\"48\" parent=\"13\" name=\"buildinfo.buildEnvironment.cc\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>6</Position>\r\n    </column>\r\n    <column id=\"49\" parent=\"13\" name=\"buildinfo.buildEnvironment.ccflags\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>7</Position>\r\n    </column>\r\n    <column id=\"50\" parent=\"13\" name=\"buildinfo.buildEnvironment.cppdefines\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>8</Position>\r\n    </column>\r\n    <column id=\"51\" parent=\"13\" name=\"buildinfo.buildEnvironment.cxx\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>9</Position>\r\n    </column>\r\n    <column id=\"52\" parent=\"13\" name=\"buildinfo.buildEnvironment.cxxflags\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>10</Position>\r\n    </column>\r\n    <column id=\"53\" parent=\"13\" name=\"buildinfo.buildEnvironment.distarch\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>11</Position>\r\n    </column>\r\n    <column id=\"54\" parent=\"13\" name=\"buildinfo.buildEnvironment.distmod\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>12</Position>\r\n    </column>\r\n    <column id=\"55\" parent=\"13\" name=\"buildinfo.buildEnvironment.linkflags\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>13</Position>\r\n    </column>\r\n    <column id=\"56\" parent=\"13\" name=\"buildinfo.buildEnvironment.target_arch\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>14</Position>\r\n    </column>\r\n    <column id=\"57\" parent=\"13\" name=\"buildinfo.buildEnvironment.target_os\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>15</Position>\r\n    </column>\r\n    <column id=\"58\" parent=\"13\" name=\"buildinfo.debug\">\r\n      <DasType>Boolean|12s</DasType>\r\n      <Position>16</Position>\r\n    </column>\r\n    <column id=\"59\" parent=\"13\" name=\"buildinfo.gitVersion\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>17</Position>\r\n    </column>\r\n    <column id=\"60\" parent=\"13\" name=\"buildinfo.javascriptEngine\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>18</Position>\r\n    </column>\r\n    <column id=\"61\" parent=\"13\" name=\"buildinfo.maxBsonObjectSize\">\r\n      <DasType>Int32|4s</DasType>\r\n      <Position>19</Position>\r\n    </column>\r\n    <column id=\"62\" parent=\"13\" name=\"buildinfo.modules\">\r\n      <DasType>list|4999545s</DasType>\r\n      <Position>20</Position>\r\n    </column>\r\n    <column id=\"63\" parent=\"13\" name=\"buildinfo.openssl\">\r\n      <DasType>Object|4999544s</DasType>\r\n      <Position>21</Position>\r\n    </column>\r\n    <column id=\"64\" parent=\"13\" name=\"buildinfo.openssl.running\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>22</Position>\r\n    </column>\r\n    <column id=\"65\" parent=\"13\" name=\"buildinfo.storageEngines\">\r\n      <DasType>Array|2003s</DasType>\r\n      <Position>23</Position>\r\n    </column>\r\n    <column id=\"66\" parent=\"13\" name=\"buildinfo.sysInfo\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>24</Position>\r\n    </column>\r\n    <column id=\"67\" parent=\"13\" name=\"buildinfo.targetMinOS\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>25</Position>\r\n    </column>\r\n    <column id=\"68\" parent=\"13\" name=\"buildinfo.version\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>26</Position>\r\n    </column>\r\n    <column id=\"69\" parent=\"13\" name=\"buildinfo.versionArray\">\r\n      <DasType>Array|2003s</DasType>\r\n      <Position>27</Position>\r\n    </column>\r\n    <column id=\"70\" parent=\"13\" name=\"cmdLine\">\r\n      <DasType>Object|4999544s</DasType>\r\n      <Position>28</Position>\r\n    </column>\r\n    <column id=\"71\" parent=\"13\" name=\"cmdLine.config\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>29</Position>\r\n    </column>\r\n    <column id=\"72\" parent=\"13\" name=\"cmdLine.net\">\r\n      <DasType>Object|4999544s</DasType>\r\n      <Position>30</Position>\r\n    </column>\r\n    <column id=\"73\" parent=\"13\" name=\"cmdLine.net.bindIp\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>31</Position>\r\n    </column>\r\n    <column id=\"74\" parent=\"13\" name=\"cmdLine.net.port\">\r\n      <DasType>Int32|4s</DasType>\r\n      <Position>32</Position>\r\n    </column>\r\n    <column id=\"75\" parent=\"13\" name=\"cmdLine.service\">\r\n      <DasType>Boolean|12s</DasType>\r\n      <Position>33</Position>\r\n    </column>\r\n    <column id=\"76\" parent=\"13\" name=\"cmdLine.storage\">\r\n      <DasType>Object|4999544s</DasType>\r\n      <Position>34</Position>\r\n    </column>\r\n    <column id=\"77\" parent=\"13\" name=\"cmdLine.storage.dbPath\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>35</Position>\r\n    </column>\r\n    <column id=\"78\" parent=\"13\" name=\"cmdLine.storage.journal\">\r\n      <DasType>Object|4999544s</DasType>\r\n      <Position>36</Position>\r\n    </column>\r\n    <column id=\"79\" parent=\"13\" name=\"cmdLine.storage.journal.enabled\">\r\n      <DasType>Boolean|12s</DasType>\r\n      <Position>37</Position>\r\n    </column>\r\n    <column id=\"80\" parent=\"13\" name=\"cmdLine.systemLog\">\r\n      <DasType>Object|4999544s</DasType>\r\n      <Position>38</Position>\r\n    </column>\r\n    <column id=\"81\" parent=\"13\" name=\"cmdLine.systemLog.destination\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>39</Position>\r\n    </column>\r\n    <column id=\"82\" parent=\"13\" name=\"cmdLine.systemLog.logAppend\">\r\n      <DasType>Boolean|12s</DasType>\r\n      <Position>40</Position>\r\n    </column>\r\n    <column id=\"83\" parent=\"13\" name=\"cmdLine.systemLog.path\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>41</Position>\r\n    </column>\r\n    <column id=\"84\" parent=\"13\" name=\"hostname\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>42</Position>\r\n    </column>\r\n    <column id=\"85\" parent=\"13\" name=\"pid\">\r\n      <DasType>Int64|12s</DasType>\r\n      <Position>43</Position>\r\n    </column>\r\n    <column id=\"86\" parent=\"13\" name=\"startTime\">\r\n      <DasType>ISODate|91s</DasType>\r\n      <Position>44</Position>\r\n    </column>\r\n    <column id=\"87\" parent=\"13\" name=\"startTimeLocal\">\r\n      <DasType>String|12s</DasType>\r\n      <Position>45</Position>\r\n    </column>\r\n  </database-model>\r\n</dataSource>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml b/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml
+--- a/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml	(revision 09b590afd8f1e713d7bc3331c8a8bf1e18190098)
++++ b/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml	(date 1701448147628)
+@@ -4,322 +4,322 @@
+     <root id="1">
+       <ServerVersion>6.0.8</ServerVersion>
+     </root>
+-    <schema id="2" parent="1" name="POS">
+-      <Current>1</Current>
+-      <LocalIntrospectionTimestamp>2023-11-28.03:04:46</LocalIntrospectionTimestamp>
+-    </schema>
+-    <schema id="3" parent="1" name="admin">
++    <schema id="2" parent="1" name="admin">
+       <LocalIntrospectionTimestamp>2023-11-26.18:59:00</LocalIntrospectionTimestamp>
+     </schema>
+-    <schema id="4" parent="1" name="config">
++    <schema id="3" parent="1" name="config">
+       <LocalIntrospectionTimestamp>2023-11-26.18:59:00</LocalIntrospectionTimestamp>
+     </schema>
+-    <schema id="5" parent="1" name="local">
++    <schema id="4" parent="1" name="local">
+       <LocalIntrospectionTimestamp>2023-11-26.18:59:00</LocalIntrospectionTimestamp>
+     </schema>
+-    <table id="6" parent="2" name="cart"/>
+-    <table id="7" parent="2" name="categories"/>
+-    <table id="8" parent="2" name="items"/>
+-    <table id="9" parent="2" name="order"/>
+-    <table id="10" parent="2" name="products"/>
+-    <table id="11" parent="2" name="user"/>
+-    <table id="12" parent="4" name="system.sessions"/>
+-    <table id="13" parent="5" name="startup_log"/>
+-    <column id="14" parent="6" name="_id">
+-      <DasType>ObjectId|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="15" parent="6" name="className">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="16" parent="6" name="items">
+-      <DasType>Array|2003s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="17" parent="7" name="_id">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="18" parent="7" name="className">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="19" parent="7" name="name">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="20" parent="7" name="subcategories">
+-      <DasType>Array|2003s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="21" parent="7" name="products">
+-      <DasType>Array|2003s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="22" parent="7" name="description">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="23" parent="8" name="_id">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="24" parent="8" name="className">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="25" parent="8" name="price">
+-      <DasType>Double|8s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="26" parent="8" name="quantityOrdered">
+-      <DasType>Int32|4s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="27" parent="8" name="product">
+-      <DasType>DBRef|12s</DasType>
+-      <Position>2</Position>
+-    </column>
+-    <column id="28" parent="9" name="_id">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="29" parent="9" name="className">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="30" parent="9" name="customer">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="31" parent="9" name="items">
+-      <DasType>Array|2003s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="32" parent="9" name="time">
+-      <DasType>ISODate|91s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="33" parent="10" name="_id">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="34" parent="10" name="name">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="35" parent="10" name="price">
+-      <DasType>Double|8s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="36" parent="10" name="stockQuantity">
+-      <DasType>Int32|4s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="37" parent="10" name="className">
+-      <DasType>String|12s</DasType>
+-      <Position>2</Position>
+-    </column>
+-    <column id="38" parent="11" name="_id">
+-      <DasType>ObjectId|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="39" parent="11" name="className">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="40" parent="11" name="password">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="41" parent="11" name="role">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="42" parent="11" name="username">
+-      <DasType>String|12s</DasType>
+-      <Position>1</Position>
+-    </column>
+-    <column id="43" parent="13" name="_id">
++    <schema id="5" parent="1" name="POS">
++      <Current>1</Current>
++      <LocalIntrospectionTimestamp>2023-11-28.03:04:46</LocalIntrospectionTimestamp>
++    </schema>
++    <table id="6" parent="3" name="system.sessions"/>
++    <table id="7" parent="4" name="startup_log"/>
++    <table id="8" parent="5" name="cart"/>
++    <table id="9" parent="5" name="categories"/>
++    <table id="10" parent="5" name="items"/>
++    <table id="11" parent="5" name="order"/>
++    <table id="12" parent="5" name="products"/>
++    <table id="13" parent="5" name="user"/>
++    <column id="14" parent="7" name="_id">
+       <DasType>String|12s</DasType>
+       <Position>1</Position>
+     </column>
+-    <column id="44" parent="13" name="buildinfo">
++    <column id="15" parent="7" name="buildinfo">
+       <DasType>Object|4999544s</DasType>
+       <Position>2</Position>
+     </column>
+-    <column id="45" parent="13" name="buildinfo.allocator">
++    <column id="16" parent="7" name="buildinfo.allocator">
+       <DasType>String|12s</DasType>
+       <Position>3</Position>
+     </column>
+-    <column id="46" parent="13" name="buildinfo.bits">
++    <column id="17" parent="7" name="buildinfo.bits">
+       <DasType>Int32|4s</DasType>
+       <Position>4</Position>
+     </column>
+-    <column id="47" parent="13" name="buildinfo.buildEnvironment">
++    <column id="18" parent="7" name="buildinfo.buildEnvironment">
+       <DasType>Object|4999544s</DasType>
+       <Position>5</Position>
+     </column>
+-    <column id="48" parent="13" name="buildinfo.buildEnvironment.cc">
++    <column id="19" parent="7" name="buildinfo.buildEnvironment.cc">
+       <DasType>String|12s</DasType>
+       <Position>6</Position>
+     </column>
+-    <column id="49" parent="13" name="buildinfo.buildEnvironment.ccflags">
++    <column id="20" parent="7" name="buildinfo.buildEnvironment.ccflags">
+       <DasType>String|12s</DasType>
+       <Position>7</Position>
+     </column>
+-    <column id="50" parent="13" name="buildinfo.buildEnvironment.cppdefines">
++    <column id="21" parent="7" name="buildinfo.buildEnvironment.cppdefines">
+       <DasType>String|12s</DasType>
+       <Position>8</Position>
+     </column>
+-    <column id="51" parent="13" name="buildinfo.buildEnvironment.cxx">
++    <column id="22" parent="7" name="buildinfo.buildEnvironment.cxx">
+       <DasType>String|12s</DasType>
+       <Position>9</Position>
+     </column>
+-    <column id="52" parent="13" name="buildinfo.buildEnvironment.cxxflags">
++    <column id="23" parent="7" name="buildinfo.buildEnvironment.cxxflags">
+       <DasType>String|12s</DasType>
+       <Position>10</Position>
+     </column>
+-    <column id="53" parent="13" name="buildinfo.buildEnvironment.distarch">
++    <column id="24" parent="7" name="buildinfo.buildEnvironment.distarch">
+       <DasType>String|12s</DasType>
+       <Position>11</Position>
+     </column>
+-    <column id="54" parent="13" name="buildinfo.buildEnvironment.distmod">
++    <column id="25" parent="7" name="buildinfo.buildEnvironment.distmod">
+       <DasType>String|12s</DasType>
+       <Position>12</Position>
+     </column>
+-    <column id="55" parent="13" name="buildinfo.buildEnvironment.linkflags">
++    <column id="26" parent="7" name="buildinfo.buildEnvironment.linkflags">
+       <DasType>String|12s</DasType>
+       <Position>13</Position>
+     </column>
+-    <column id="56" parent="13" name="buildinfo.buildEnvironment.target_arch">
++    <column id="27" parent="7" name="buildinfo.buildEnvironment.target_arch">
+       <DasType>String|12s</DasType>
+       <Position>14</Position>
+     </column>
+-    <column id="57" parent="13" name="buildinfo.buildEnvironment.target_os">
++    <column id="28" parent="7" name="buildinfo.buildEnvironment.target_os">
+       <DasType>String|12s</DasType>
+       <Position>15</Position>
+     </column>
+-    <column id="58" parent="13" name="buildinfo.debug">
++    <column id="29" parent="7" name="buildinfo.debug">
+       <DasType>Boolean|12s</DasType>
+       <Position>16</Position>
+     </column>
+-    <column id="59" parent="13" name="buildinfo.gitVersion">
++    <column id="30" parent="7" name="buildinfo.gitVersion">
+       <DasType>String|12s</DasType>
+       <Position>17</Position>
+     </column>
+-    <column id="60" parent="13" name="buildinfo.javascriptEngine">
++    <column id="31" parent="7" name="buildinfo.javascriptEngine">
+       <DasType>String|12s</DasType>
+       <Position>18</Position>
+     </column>
+-    <column id="61" parent="13" name="buildinfo.maxBsonObjectSize">
++    <column id="32" parent="7" name="buildinfo.maxBsonObjectSize">
+       <DasType>Int32|4s</DasType>
+       <Position>19</Position>
+     </column>
+-    <column id="62" parent="13" name="buildinfo.modules">
++    <column id="33" parent="7" name="buildinfo.modules">
+       <DasType>list|4999545s</DasType>
+       <Position>20</Position>
+     </column>
+-    <column id="63" parent="13" name="buildinfo.openssl">
++    <column id="34" parent="7" name="buildinfo.openssl">
+       <DasType>Object|4999544s</DasType>
+       <Position>21</Position>
+     </column>
+-    <column id="64" parent="13" name="buildinfo.openssl.running">
++    <column id="35" parent="7" name="buildinfo.openssl.running">
+       <DasType>String|12s</DasType>
+       <Position>22</Position>
+     </column>
+-    <column id="65" parent="13" name="buildinfo.storageEngines">
++    <column id="36" parent="7" name="buildinfo.storageEngines">
+       <DasType>Array|2003s</DasType>
+       <Position>23</Position>
+     </column>
+-    <column id="66" parent="13" name="buildinfo.sysInfo">
++    <column id="37" parent="7" name="buildinfo.sysInfo">
+       <DasType>String|12s</DasType>
+       <Position>24</Position>
+     </column>
+-    <column id="67" parent="13" name="buildinfo.targetMinOS">
++    <column id="38" parent="7" name="buildinfo.targetMinOS">
+       <DasType>String|12s</DasType>
+       <Position>25</Position>
+     </column>
+-    <column id="68" parent="13" name="buildinfo.version">
++    <column id="39" parent="7" name="buildinfo.version">
+       <DasType>String|12s</DasType>
+       <Position>26</Position>
+     </column>
+-    <column id="69" parent="13" name="buildinfo.versionArray">
++    <column id="40" parent="7" name="buildinfo.versionArray">
+       <DasType>Array|2003s</DasType>
+       <Position>27</Position>
+     </column>
+-    <column id="70" parent="13" name="cmdLine">
++    <column id="41" parent="7" name="cmdLine">
+       <DasType>Object|4999544s</DasType>
+       <Position>28</Position>
+     </column>
+-    <column id="71" parent="13" name="cmdLine.config">
++    <column id="42" parent="7" name="cmdLine.config">
+       <DasType>String|12s</DasType>
+       <Position>29</Position>
+     </column>
+-    <column id="72" parent="13" name="cmdLine.net">
++    <column id="43" parent="7" name="cmdLine.net">
+       <DasType>Object|4999544s</DasType>
+       <Position>30</Position>
+     </column>
+-    <column id="73" parent="13" name="cmdLine.net.bindIp">
++    <column id="44" parent="7" name="cmdLine.net.bindIp">
+       <DasType>String|12s</DasType>
+       <Position>31</Position>
+     </column>
+-    <column id="74" parent="13" name="cmdLine.net.port">
++    <column id="45" parent="7" name="cmdLine.net.port">
+       <DasType>Int32|4s</DasType>
+       <Position>32</Position>
+     </column>
+-    <column id="75" parent="13" name="cmdLine.service">
++    <column id="46" parent="7" name="cmdLine.service">
+       <DasType>Boolean|12s</DasType>
+       <Position>33</Position>
+     </column>
+-    <column id="76" parent="13" name="cmdLine.storage">
++    <column id="47" parent="7" name="cmdLine.storage">
+       <DasType>Object|4999544s</DasType>
+       <Position>34</Position>
+     </column>
+-    <column id="77" parent="13" name="cmdLine.storage.dbPath">
++    <column id="48" parent="7" name="cmdLine.storage.dbPath">
+       <DasType>String|12s</DasType>
+       <Position>35</Position>
+     </column>
+-    <column id="78" parent="13" name="cmdLine.storage.journal">
++    <column id="49" parent="7" name="cmdLine.storage.journal">
+       <DasType>Object|4999544s</DasType>
+       <Position>36</Position>
+     </column>
+-    <column id="79" parent="13" name="cmdLine.storage.journal.enabled">
++    <column id="50" parent="7" name="cmdLine.storage.journal.enabled">
+       <DasType>Boolean|12s</DasType>
+       <Position>37</Position>
+     </column>
+-    <column id="80" parent="13" name="cmdLine.systemLog">
++    <column id="51" parent="7" name="cmdLine.systemLog">
+       <DasType>Object|4999544s</DasType>
+       <Position>38</Position>
+     </column>
+-    <column id="81" parent="13" name="cmdLine.systemLog.destination">
++    <column id="52" parent="7" name="cmdLine.systemLog.destination">
+       <DasType>String|12s</DasType>
+       <Position>39</Position>
+     </column>
+-    <column id="82" parent="13" name="cmdLine.systemLog.logAppend">
++    <column id="53" parent="7" name="cmdLine.systemLog.logAppend">
+       <DasType>Boolean|12s</DasType>
+       <Position>40</Position>
+     </column>
+-    <column id="83" parent="13" name="cmdLine.systemLog.path">
++    <column id="54" parent="7" name="cmdLine.systemLog.path">
+       <DasType>String|12s</DasType>
+       <Position>41</Position>
+     </column>
+-    <column id="84" parent="13" name="hostname">
++    <column id="55" parent="7" name="hostname">
+       <DasType>String|12s</DasType>
+       <Position>42</Position>
+     </column>
+-    <column id="85" parent="13" name="pid">
++    <column id="56" parent="7" name="pid">
+       <DasType>Int64|12s</DasType>
+       <Position>43</Position>
+     </column>
+-    <column id="86" parent="13" name="startTime">
++    <column id="57" parent="7" name="startTime">
+       <DasType>ISODate|91s</DasType>
+       <Position>44</Position>
+     </column>
+-    <column id="87" parent="13" name="startTimeLocal">
++    <column id="58" parent="7" name="startTimeLocal">
+       <DasType>String|12s</DasType>
+       <Position>45</Position>
++    </column>
++    <column id="59" parent="8" name="_id">
++      <DasType>ObjectId|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="60" parent="8" name="className">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="61" parent="8" name="items">
++      <DasType>Array|2003s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="62" parent="9" name="_id">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="63" parent="9" name="className">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="64" parent="9" name="description">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="65" parent="9" name="name">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="66" parent="9" name="products">
++      <DasType>Array|2003s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="67" parent="9" name="subcategories">
++      <DasType>Array|2003s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="68" parent="10" name="_id">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="69" parent="10" name="className">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="70" parent="10" name="price">
++      <DasType>Double|8s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="71" parent="10" name="quantityOrdered">
++      <DasType>Int32|4s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="72" parent="10" name="product">
++      <DasType>DBRef|12s</DasType>
++      <Position>2</Position>
++    </column>
++    <column id="73" parent="11" name="_id">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="74" parent="11" name="className">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="75" parent="11" name="customer">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="76" parent="11" name="items">
++      <DasType>Array|2003s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="77" parent="11" name="time">
++      <DasType>ISODate|91s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="78" parent="12" name="_id">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="79" parent="12" name="name">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="80" parent="12" name="price">
++      <DasType>Double|8s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="81" parent="12" name="stockQuantity">
++      <DasType>Int32|4s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="82" parent="12" name="className">
++      <DasType>String|12s</DasType>
++      <Position>2</Position>
++    </column>
++    <column id="83" parent="13" name="_id">
++      <DasType>ObjectId|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="84" parent="13" name="className">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="85" parent="13" name="password">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="86" parent="13" name="role">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
++    </column>
++    <column id="87" parent="13" name="username">
++      <DasType>String|12s</DasType>
++      <Position>1</Position>
+     </column>
+   </database-model>
+ </dataSource>
+\ No newline at end of file
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import BusinessLayer.*;\r\nimport DAO.*;\r\n//import DAO.OrderDAO;\r\nimport org.bson.types.ObjectId;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n\r\n        Category subcategory1 = new Category();\r\n        subcategory1.setCode(\"1\");\r\n        subcategory1.setName(\"Subcategory 1\");\r\n        subcategory1.setDescription(\"Description for Subcategory 1\");\r\n\r\n        Category subcategory2 = new Category();\r\n        subcategory2.setCode(\"2\");\r\n        subcategory2.setName(\"Subcategory 2\");\r\n        subcategory2.setDescription(\"Description for Subcategory 2\");\r\n\r\n\r\n        Category subcategory3 = new Category();\r\n        subcategory3.setCode(\"3\");\r\n        subcategory3.setName(\"Subcategory 3\");\r\n        subcategory3.setDescription(\"Description for Subcategory 3\");\r\n\r\n\r\n        Category subcategory4 = new Category();\r\n        subcategory4.setCode(\"4\");\r\n        subcategory4.setName(\"Subcategory 4\");\r\n        subcategory4.setDescription(\"Description for Subcategory 4\");\r\n\r\n\r\n\r\n        Category mainCategory = new Category();\r\n        mainCategory.setCode(\"0\");\r\n        mainCategory.setName(\"Main Category\");\r\n        mainCategory.setDescription(\"Description for Main Category\");\r\n\r\n        Product product1 = new Product();\r\n        product1.setCode(\"1\");\r\n        product1.setName(\"Product 1\");\r\n        product1.setPrice(10.0);\r\n        product1.setStockQuantity(100);\r\n\r\n\r\n        Product product2 = new Product();\r\n        product2.setCode(\"2\");\r\n        product2.setName(\"Product 2\");\r\n        product2.setPrice(15.0);\r\n        product2.setStockQuantity(50);\r\n\r\n\r\n\r\n        subcategory4.add(product1);\r\n        subcategory2.add(product2);\r\n        subcategory3.add(subcategory4);\r\n        subcategory1.add(subcategory3);\r\n        mainCategory.add(subcategory1);\r\n        mainCategory.add(subcategory2);\r\n        CategoryDAO categoryDAO= new CategoryDAO();\r\n        categoryDAO.createCategory(mainCategory);\r\n\r\n        Category foundCategory = categoryDAO.findCategoryByName(\"Main Category\");\r\n        if (foundCategory != null) {\r\n            System.out.println(\"Found category: \" + foundCategory.getName());\r\n            System.out.println(\"Subcategories: \" + foundCategory.getSubcategories().size());\r\n            System.out.println(\"Products: \" + foundCategory.getProducts().size());\r\n        } else {\r\n            System.out.println(\"Category not found.\");\r\n        }\r\n\r\n        System.out.println(\"Found category: \" + foundCategory.getName());\r\n        //subcategory1.remove(subcategory3);\r\n        categoryDAO.getCategoriesWithSubcategoriesAndProductsByName(mainCategory.getName());\r\n        ProductDAO productDAO = new ProductDAO();\r\n\r\n\r\n        Item item1 =new Item();\r\n//        item1.setId(\"1\");\r\n        item1.setProduct(product1);\r\n        item1.setQuantityOrdered(7);\r\n        item1.setPrice();\r\n\r\n        Item item2 =new Item();\r\n//        item2.setId(\"2\");\r\n        item2.setProduct(product2);\r\n        item2.setQuantityOrdered(5);\r\n        item2.setPrice();\r\n\r\n        ItemContainer itemContainer=new Cart();\r\n        itemContainer.add(item1);\r\n        itemContainer.add(item2);\r\n//        itemContainer.setId(\"1\");\r\n        CartDAO cartDAO=new CartDAO();\r\n        cartDAO.createCart((Cart) itemContainer);\r\n        cartDAO.getCart((Cart) itemContainer);\r\n        System.out.println(cartDAO.findCartById(itemContainer.getId()).total());\r\n\r\n        ItemContainer itemContainer1 = new Order();\r\n        itemContainer1.add(item1);\r\n        itemContainer1.add(item2);\r\n//        itemContainer1.setId(\"2\");\r\n\r\n        Order order = (Order) itemContainer1;\r\n        order.setCustomer(\"Muhammad Ahmad\");\r\n        order.setTime();\r\n\r\n        OrderDAO orderDAO = new OrderDAO();\r\n        orderDAO.createOrder(order);\r\n        orderDAO.getOrder(order);\r\n//        User user = new Manager();\r\n//        user.setName(\"Muhammad Ahmad\");\r\n//        user.setPassword(\"1234\");\r\n//        UserDAO userDAO = new UserDAO();\r\n//        userDAO.createUser(user);\r\n//        System.out.println(userDAO.findUserByUsernameAndPassword(\"Muhammad Ahmad\",\"1234\").getName());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision 09b590afd8f1e713d7bc3331c8a8bf1e18190098)
++++ b/src/Main.java	(date 1701270153832)
+@@ -73,40 +73,42 @@
+         categoryDAO.getCategoriesWithSubcategoriesAndProductsByName(mainCategory.getName());
+         ProductDAO productDAO = new ProductDAO();
+ 
+-
+-        Item item1 =new Item();
+-//        item1.setId("1");
+-        item1.setProduct(product1);
+-        item1.setQuantityOrdered(7);
+-        item1.setPrice();
+-
+-        Item item2 =new Item();
+-//        item2.setId("2");
+-        item2.setProduct(product2);
+-        item2.setQuantityOrdered(5);
+-        item2.setPrice();
+-
+-        ItemContainer itemContainer=new Cart();
+-        itemContainer.add(item1);
+-        itemContainer.add(item2);
+-//        itemContainer.setId("1");
+-        CartDAO cartDAO=new CartDAO();
+-        cartDAO.createCart((Cart) itemContainer);
+-        cartDAO.getCart((Cart) itemContainer);
+-        System.out.println(cartDAO.findCartById(itemContainer.getId()).total());
+-
+-        ItemContainer itemContainer1 = new Order();
+-        itemContainer1.add(item1);
+-        itemContainer1.add(item2);
+-//        itemContainer1.setId("2");
+-
+-        Order order = (Order) itemContainer1;
+-        order.setCustomer("Muhammad Ahmad");
+-        order.setTime();
+-
+-        OrderDAO orderDAO = new OrderDAO();
+-        orderDAO.createOrder(order);
+-        orderDAO.getOrder(order);
++        for (Product product : productDAO.getProducts()) {
++            System.out.println("Product: " + product.getName());
++        }
++//        Item item1 =new Item();
++////        item1.setId("1");
++//        item1.setProduct(product1);
++//        item1.setQuantityOrdered(7);
++//        item1.setPrice();
++//
++//        Item item2 =new Item();
++////        item2.setId("2");
++//        item2.setProduct(product2);
++//        item2.setQuantityOrdered(5);
++//        item2.setPrice();
++//
++//        ItemContainer itemContainer=new Cart();
++//        itemContainer.add(item1);
++//        itemContainer.add(item2);
++////        itemContainer.setId("1");
++//        CartDAO cartDAO=new CartDAO();
++//        cartDAO.createCart((Cart) itemContainer);
++//        cartDAO.getCart((Cart) itemContainer);
++//        System.out.println(cartDAO.findCartById(itemContainer.getId()).total());
++//
++//        ItemContainer itemContainer1 = new Order();
++//        itemContainer1.add(item1);
++//        itemContainer1.add(item2);
++////        itemContainer1.setId("2");
++//
++//        Order order = (Order) itemContainer1;
++//        order.setCustomer("Muhammad Ahmad");
++//        order.setTime();
++//
++//        OrderDAO orderDAO = new OrderDAO();
++//        orderDAO.createOrder(order);
++//        orderDAO.getOrder(order);
+ //        User user = new Manager();
+ //        user.setName("Muhammad Ahmad");
+ //        user.setPassword("1234");
+Index: src/GUI/LoginGUI.form
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<form xmlns=\"http://www.intellij.com/uidesigner/form/\" version=\"1\" bind-to-class=\"GUI.LoginGUI\">\r\n  <grid id=\"27dc6\" row-count=\"1\" column-count=\"1\" layout-manager=\"GridLayoutManager\">\r\n    <margin top=\"0\" left=\"0\" bottom=\"0\" right=\"0\"/>\r\n    <constraints>\r\n      <xy x=\"20\" y=\"20\" width=\"500\" height=\"400\"/>\r\n      <grid row=\"0\" column=\"0\" row-span=\"1\" col-span=\"1\" vsize-policy=\"3\" hsize-policy=\"3\" anchor=\"0\" fill=\"3\" indent=\"0\" use-parent-layout=\"false\"/>\r\n    </constraints>\r\n    <properties/>\r\n    <border type=\"none\"/>\r\n    <children/>\r\n  </grid>\r\n</form>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GUI/LoginGUI.form b/src/GUI/LoginGUI.form
+--- a/src/GUI/LoginGUI.form	(revision 09b590afd8f1e713d7bc3331c8a8bf1e18190098)
++++ b/src/GUI/LoginGUI.form	(date 1701141764245)
+@@ -1,13 +1,31 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.LoginGUI">
+-  <grid id="27dc6" row-count="1" column-count="1" layout-manager="GridLayoutManager">
++  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+     <margin top="0" left="0" bottom="0" right="0"/>
+     <constraints>
+       <xy x="20" y="20" width="500" height="400"/>
+-      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+     </constraints>
+     <properties/>
+     <border type="none"/>
+-    <children/>
++    <children>
++      <component id="9fb56" class="javax.swing.JButton" binding="button1" default-binding="true">
++        <constraints>
++          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
++        </constraints>
++        <properties>
++          <text value="Button"/>
++        </properties>
++      </component>
++      <hspacer id="e8cbe">
++        <constraints>
++          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
++        </constraints>
++      </hspacer>
++      <vspacer id="c364c">
++        <constraints>
++          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
++        </constraints>
++      </vspacer>
++    </children>
+   </grid>
+ </form>

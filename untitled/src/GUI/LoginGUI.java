@@ -1,9 +1,16 @@
 package GUI;
 
+import BusinessLayer.User;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 public class LoginGUI extends JFrame {
+    User user = new User();
+    private JButton button1;
 
     public LoginGUI() {
         setTitle("Pharmacy Login");
@@ -12,6 +19,7 @@ public class LoginGUI extends JFrame {
         setLocationRelativeTo(null);
 
         initUI();
+
     }
 
     private void initUI() {
@@ -70,6 +78,12 @@ public class LoginGUI extends JFrame {
         inputPanel.add(passwordTextField, gbc);
 
         JButton loginButton = new JButton("Login");
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getId());
+            }
+        });
         gbc.gridx = 1;
         gbc.gridy = 3;
         gbc.insets = new Insets(10, 5, 5, 5); // Adjusted padding for the button

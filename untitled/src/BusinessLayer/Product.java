@@ -5,6 +5,8 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 import org.mongodb.morphia.annotations.Transient;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 @Entity("products")
 public class Product {
@@ -14,9 +16,14 @@ public class Product {
     private String description;
     private int stockQuantity;
     private double price;
-
-
-
+    private LocalDate expirydate;
+    public Product(){
+        LocalDate currentDate = LocalDate.now();
+        expirydate = currentDate.plusMonths(3);
+    }
+    public LocalDate getExpirydate() {
+        return expirydate;
+    }
 
     public String getCode() {
         return code;
@@ -58,10 +65,34 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-
+    public boolean checkStock(){
+        if(this.stockQuantity<=4) {
+            Product P = new Product();
+            P.setName(this.getName());
+            P.setStockQuantity(20);
+            P.setPrice(this.getPrice());
+            P.setDescription(this.getDescription());
+            productDAO.createProduct(P);
+        }
+        return true;
+    }
+    public boolean checkExpiryDate(){
+        if(this.expirydate.isBefore(LocalDate.now())) {
+            Product P = new Product();
+            P.setName(this.getName());
+            P.setStockQuantity(20);
+            P.setPrice(this.getPrice());
+            P.setDescription(this.getDescription());
+            productDAO.createProduct(P);
+            productDAO.deleteProduct(this);
+        }
+        return true;
+    }
     public boolean updateStock(int num){
-        this.stockQuantity = this.stockQuantity - num;
-        productDAO.updateStockProduct(this);
+        if(this.stockQuantity-num>=0) {
+            this.stockQuantity = this.stockQuantity - num;
+            productDAO.updateStockProduct(this);
+        }
         return true;
     }
 
@@ -69,6 +100,9 @@ public class Product {
         return productDAO.getAllProducts();
     }
 
+    public String getCategoryofProduct(Category category){
+        return productDAO.getCategoryofProduct(category,this);
+    }
     public void display()
     {
         System.out.println( "Product: " + this.getName());
