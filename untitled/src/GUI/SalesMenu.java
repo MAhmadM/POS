@@ -11,6 +11,8 @@ import BusinessLayer.Product;
 import DAO.ProductDAO;
 
 import javax.lang.model.type.NullType;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -195,6 +197,8 @@ public class SalesMenu extends javax.swing.JFrame {
                                         .addComponent(textfieldname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(48, Short.MAX_VALUE))
         );
+
+
 
         jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -604,6 +608,7 @@ public class SalesMenu extends javax.swing.JFrame {
         }
         return model;
     }
+
 
 
 }
