@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e6f4d22-b3f2-4551-93ce-7cec2fe66066" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mongo_jdbc_standalone_1_18.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mongo_jdbc_standalone_1_18.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/ItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ItemDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/SQE Project/QCFORCEx",
+    "last_opened_file_path": "C:/Users/Acer/Downloads/itextpdf-5.5.9.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,7 +69,7 @@
       <workItem from="1700445387704" duration="17000" />
       <workItem from="1700445512984" duration="2764000" />
       <workItem from="1700925966247" duration="56957000" />
-      <workItem from="1701448118224" duration="8464000" />
+      <workItem from="1701448118224" duration="23305000" />
     </task>
     <servers />
   </component>
