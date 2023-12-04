@@ -21,6 +21,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -399,6 +400,7 @@ public class SalesMenu extends javax.swing.JFrame {
                 int quantity = (int) QuantitySpinner.getValue();
                 if (quantity > 0 && quantity < 1000 && quantity <= SelectedProduct.getStockQuantity()) {
                     Product product = SelectedProduct.copy();
+                    //product.setStockQuantity(product.getStockQuantity()-quantity);
                     //making new Item
                     Item item = new Item();
                     //item.setId(); // yeh Objectid set karni abhi
@@ -424,6 +426,35 @@ public class SalesMenu extends javax.swing.JFrame {
                     textfieldname.setText("");
                     textFieldID.setText("");
                     QuantitySpinner.setValue((int) 1);
+
+
+                    DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
+                    model.setRowCount(0);
+                    for(Product change: InventoryList)
+                    {
+                        if(change.getCode().equals(SelectedProduct.getCode()))
+                        {
+                            change.setStockQuantity(change.getStockQuantity()-quantity);
+                        }
+                    }
+                    SearchProductList = InventoryList;
+                    for (Product product1 : SearchProductList) {
+//                        int stock =0 ;
+//                        if(Objects.equals(product1.getCode(), SelectedProduct.getCode())){
+//                           stock = product1.getStockQuantity()-quantity;
+//                        }
+//                        else {
+//                            stock= product1.getStockQuantity();
+//                        }
+                        Object[] row = {
+                                product1.getCode(),
+                                product1.getName(),
+                                product1.getStockQuantity(),
+                                product1.getPrice(),
+                                product1.getDescription()
+                        };
+                        model.addRow(row);
+                    }
                 }
 //            }
 
@@ -436,6 +467,19 @@ public class SalesMenu extends javax.swing.JFrame {
         CartItemList.clear();
         DefaultTableModel CartModel = (DefaultTableModel) jTable1.getModel();
         CartModel.setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
+        model.setRowCount(0);
+        for (Product product1 : SearchProductList) {
+            Object[] row = {
+                    product1.getCode(),
+                    product1.getName(),
+                    product1.getStockQuantity(),
+                    product1.getPrice(),
+                    product1.getDescription()
+            };
+            model.addRow(row);
+        }
+
     }
 
     private void CreateBillBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -451,10 +495,19 @@ public class SalesMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(SelectedCartItem!=null)
         {
+            int quantity = (int) QuantitySpinner.getValue();
             int selectedRow = jTable1.getSelectedRow();
-            CartItemList.remove(selectedRow);
+            for(Product change: InventoryList)
+            {
 
-            int quantity = (int)QuantitySpinner.getValue();
+                if(change.getCode().equals(SelectedCartItem.getProduct().getCode()))
+                {
+                    change.setStockQuantity(change.getStockQuantity()+SelectedCartItem.getQuantityOrdered()-quantity);
+                }
+
+            }
+            CartItemList.remove(selectedRow);
+//            int quantity = (int)QuantitySpinner.getValue();
             if(quantity>0 && quantity < 1000 && quantity<=  SelectedCartItem.getProduct().getStockQuantity())
             {
                 Product product = SelectedCartItem.getProduct().copy();
@@ -483,7 +536,24 @@ public class SalesMenu extends javax.swing.JFrame {
                 textfieldname.setText("");
                 textFieldID.setText("");
                 QuantitySpinner.setValue((int)1);
+
+                DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
+                model.setRowCount(0);
+                SearchProductList = InventoryList;
+                for (Product product1 : SearchProductList) {
+
+                    Object[] row = {
+                            product1.getCode(),
+                            product1.getName(),
+                            product1.getStockQuantity(),
+                            product1.getPrice(),
+                            product1.getDescription()
+                    };
+                    model.addRow(row);
+                }
             }
+
+
 
 
             //create else body to display message dialog for quantity error
@@ -512,6 +582,7 @@ public class SalesMenu extends javax.swing.JFrame {
             textfieldname.setText("");
             textFieldID.setText("");
             QuantitySpinner.setValue((int)1);
+
 
         }
     }
