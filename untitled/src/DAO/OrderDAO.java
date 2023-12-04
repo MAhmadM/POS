@@ -41,15 +41,11 @@ public class OrderDAO {
         datastore.delete(order);
     }
 
-    public void getOrder(Order order) {
+    public Order getOrder(Order order) {
         Order container = findOrderById( order.getId());
-        if (container != null) {
-            System.out.println("ItemContainer: " + container.getId());
-            displaySubcategoriesAndProducts(container);
-        } else {
-            System.out.println("Category not found.");
-        }
+        return order;
     }
+
 
     private void displaySubcategoriesAndProducts(Order container) {
         StringBuilder indent = new StringBuilder();

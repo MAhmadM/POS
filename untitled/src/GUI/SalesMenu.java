@@ -4,19 +4,19 @@
  */
 package GUI;
 
-import BusinessLayer.Cart;
-import BusinessLayer.Item;
-import BusinessLayer.ItemContainer;
-import BusinessLayer.Product;
+import BusinessLayer.*;
 import DAO.ProductDAO;
 
 import javax.lang.model.type.NullType;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -39,9 +39,12 @@ public class SalesMenu extends javax.swing.JFrame {
     List<Item> CartItemList ;
 
     Item SelectedCartItem;
+    ItemContainer Container = new Order();
+    Order order = (Order)Container;
+    User u = new User();
 
-
-    public SalesMenu() {
+    public SalesMenu( User user ) {
+        u = user;
         initComponents();
     }
 
@@ -437,7 +440,11 @@ public class SalesMenu extends javax.swing.JFrame {
 
     private void CreateBillBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        ItemContainer Container = new Cart();
+        for(Item item : CartItemList) {
+            order.add(item);
+        }
+        order.setUser(u);
+        showBillGenerationDialog();
         //Container.
     }
     private void UpdateCartBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -512,37 +519,37 @@ public class SalesMenu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SalesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SalesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SalesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SalesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SalesMenu().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(SalesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(SalesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(SalesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(SalesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new SalesMenu().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify
     private javax.swing.JButton ClearCartBtn;
@@ -564,6 +571,7 @@ public class SalesMenu extends javax.swing.JFrame {
     private javax.swing.JTable tableResults;
     private javax.swing.JTextField textFieldID;
     private javax.swing.JTextField textfieldname;
+
     // End of variables declaration
 
     private List<Product> getProductList() {
@@ -608,8 +616,54 @@ public class SalesMenu extends javax.swing.JFrame {
         }
         return model;
     }
+    private void showBillGenerationDialog() {
+        // Create components
+        JLabel nameLabel = new JLabel("Customer Name:");
+        JTextField nameTextField = new JTextField();
+        JButton generateBillButton = new JButton("Generate Bill");
 
+        // Create a panel to hold components
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(nameLabel);
+        panel.add(nameTextField);
+        panel.add(generateBillButton);
 
+        // Create the dialog
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Generate Bill");
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.add(panel);
 
+        // Add ActionListener to the Generate Bill button
+        generateBillButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Perform the bill generation logic here
+                String customerName = nameTextField.getText();
+
+                order.setCustomer(customerName);
+                order.setTime();
+                order.save();
+                InvoiceGenerator.generateInvoice(order);
+                // Close the dialog
+                dialog.dispose();
+            }
+        });
+
+        // Make the dialog non-resizable
+        dialog.setResizable(false);
+
+        // Set the size of the dialog
+        dialog.setSize(300, 150);
+
+        // Center the dialog on the screen
+        dialog.setLocationRelativeTo(null);
+
+        // Display the dialog
+        dialog.setVisible(true);
+    }
 }
+
+
 

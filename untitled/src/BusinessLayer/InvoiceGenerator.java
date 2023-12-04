@@ -2,6 +2,7 @@ package BusinessLayer;
 import BusinessLayer.Item;
 import BusinessLayer.Order;
 import BusinessLayer.Product;
+import DAO.OrderDAO;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -70,44 +71,48 @@ public class InvoiceGenerator{
         }
     }
 
-//
-//
-//    public static void main(String[] args) {
-//        // Example usage
-//
-//        Product product1 = new Product();
-//        product1.setCode("1");
-//        product1.setName("Product 1");
-//        product1.setPrice(10.0);
-//        product1.setStockQuantity(100);
-//        product1.setDescription("aaaaaa");
-//
-//
-//        Product product2 = new Product();
-//        product2.setCode("2");
-//        product2.setName("Poko");
-//        product2.setPrice(15.0);
-//        product2.setStockQuantity(50);
-//        product2.setDescription("oooooo");
-//
-//        Item item1 =new Item();
-////        item1.setId("1");
-//        item1.setProduct(product1);
-//        item1.setQuantityOrdered(7);
-//        item1.setPrice();
-//
-//        Item item2 =new Item();
-////        item2.setId("2");
-//        item2.setProduct(product2);
-//        item2.setQuantityOrdered(5);
-//        item2.setPrice();
-//
-//        Order itemContainer=new Order();
-//        itemContainer.add(item1);
-//        itemContainer.add(item2);
-//        itemContainer.setTime();
-//        itemContainer.setCustomer("Muhammad Ahmad");
-//        //itemContainer.setId();
-//        generateInvoice(itemContainer);
-//    }
+
+
+    public static void main(String[] args) {
+        // Example usage
+
+        Product product1 = new Product();
+        product1.setCode("1");
+        product1.setName("Product 1");
+        product1.setPrice(10.0);
+        product1.setStockQuantity(100);
+        product1.setDescription("aaaaaa");
+
+
+        Product product2 = new Product();
+        product2.setCode("2");
+        product2.setName("Poko");
+        product2.setPrice(15.0);
+        product2.setStockQuantity(50);
+        product2.setDescription("oooooo");
+
+        Item item1 =new Item();
+//        item1.setId("1");
+        item1.setProduct(product1);
+        item1.setQuantityOrdered(7);
+        item1.setPrice();
+
+        Item item2 =new Item();
+//        item2.setId("2");
+        item2.setProduct(product2);
+        item2.setQuantityOrdered(5);
+        item2.setPrice();
+
+        ItemContainer itemContainer=new Order();
+        itemContainer.add(item1);
+        itemContainer.add(item2);
+        Order order = (Order) itemContainer;
+        order.setTime();
+        order.setCustomer("Muhammad Ahmad");
+        OrderDAO orderDAO=new OrderDAO();
+        orderDAO.createOrder(order);
+        //itemContainer.setId();
+        generateInvoice(orderDAO.getOrder(order));
+
+    }
 }

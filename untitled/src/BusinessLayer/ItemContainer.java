@@ -18,6 +18,8 @@ public abstract class ItemContainer {
     protected ObjectId id;
     @Reference
     protected List<Item> items = new ArrayList<>();
+    @Reference
+    User user = new User();
 
     public abstract boolean add(Item item);
 
@@ -39,7 +41,20 @@ public abstract class ItemContainer {
         return items;
     }
 
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Transient
     ItemDAO itemDAO=new ItemDAO();
 
+    public abstract void save() ;
 }

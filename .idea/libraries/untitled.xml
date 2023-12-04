@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/untitled/mongo-java-driver-3.12.14.jar!/" />
       <root url="jar://$PROJECT_DIR$/untitled/morphia-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/untitled/itextpdf-5.5.9.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,5 +1,6 @@
 package GUI;
 
+import BusinessLayer.Role;
 import BusinessLayer.User;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventListener;
+import java.util.Objects;
 
 public class LoginGUI extends JFrame {
     User user = new User();
@@ -82,6 +84,18 @@ public class LoginGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getId());
+                User u = (user.logIn(usernameTextField.getText(),passwordTextField.getText()));
+                if(Role.SALES_ASSISTANT.equals(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getRole()))
+                {
+                    setVisible(false);
+                    SalesMenu salesMenu = new SalesMenu( u );
+                    salesMenu.setVisible(true);
+                }
+                else if(Role.MANAGER.equals(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getRole()))
+                {
+                    setVisible(false);
+
+                }
             }
         });
         gbc.gridx = 1;
@@ -96,6 +110,7 @@ public class LoginGUI extends JFrame {
         SwingUtilities.invokeLater(() -> {
             LoginGUI login = new LoginGUI();
             login.setVisible(true);
+
         });
     }
 }

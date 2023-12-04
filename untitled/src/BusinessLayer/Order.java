@@ -67,4 +67,7 @@ public class Order extends ItemContainer{
     }
     @Transient
     OrderDAO orderDAO=new OrderDAO();
+    public void save(){
+        orderDAO.createOrder(this);
+    }
 }

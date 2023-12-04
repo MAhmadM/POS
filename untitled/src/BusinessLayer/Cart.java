@@ -35,6 +35,12 @@ public class Cart extends ItemContainer{
 
         return totalPrice;
     }
+
+    @Override
+    public void save() {
+
+    }
+
     @Override
     public boolean remove(Item item){
         cartDAO.deleteItemCart(item);
@@ -47,4 +53,5 @@ public class Cart extends ItemContainer{
     }
     @Transient
     CartDAO cartDAO=new CartDAO();
+
 }
