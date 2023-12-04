@@ -87,14 +87,15 @@ public class LoginGUI extends JFrame {
                 User u = (user.logIn(usernameTextField.getText(),passwordTextField.getText()));
                 if(Role.SALES_ASSISTANT.equals(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getRole()))
                 {
-                    setVisible(false);
+                    dispose();
                     SalesMenu salesMenu = new SalesMenu( u );
                     salesMenu.setVisible(true);
                 }
                 else if(Role.MANAGER.equals(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getRole()))
                 {
-                    setVisible(false);
-
+                    dispose();
+                    ManagerMenu managerMenu = new ManagerMenu();
+                    managerMenu.setVisible(true);
                 }
             }
         });

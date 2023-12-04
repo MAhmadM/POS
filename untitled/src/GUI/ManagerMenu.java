@@ -128,15 +128,24 @@ public class ManagerMenu extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void LogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        dispose();
+        LoginGUI loginGUI = new LoginGUI();
+        loginGUI.setVisible(true);
     }
 
     private void Manage_CategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        dispose();
+//        Catalog catalog = new Catalog();
+//        catalog.setVisible(true);
     }
 
     private void Manage_InventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        dispose();
+        InventoryManagement inventoryManagement = new InventoryManagement();
+        inventoryManagement.setVisible(true);
+
     }
 
     private void Sale_ReportBtnActionPerformed(java.awt.event.ActionEvent evt) {
