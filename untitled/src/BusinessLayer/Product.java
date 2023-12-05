@@ -67,19 +67,22 @@ public class Product {
     }
 
     public boolean checkStock(){
-        if(this.stockQuantity<=4) {
+        if(this.stockQuantity<=0) {
             Product P = new Product();
+            P.setCode(this.getCode());
             P.setName(this.getName());
             P.setStockQuantity(20);
             P.setPrice(this.getPrice());
             P.setDescription(this.getDescription());
             productDAO.createProduct(P);
+            productDAO.deleteProduct(this);
         }
         return true;
     }
     public boolean checkExpiryDate(){
         if(this.expirydate.isBefore(LocalDate.now())) {
             Product P = new Product();
+            P.setCode(this.getCode());
             P.setName(this.getName());
             P.setStockQuantity(20);
             P.setPrice(this.getPrice());
