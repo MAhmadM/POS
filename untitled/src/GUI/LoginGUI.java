@@ -83,7 +83,7 @@ public class LoginGUI extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getId());
+               // System.out.println(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getId());
                 User u = (user.logIn(usernameTextField.getText(),passwordTextField.getText()));
                 if(Role.SALES_ASSISTANT.equals(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getRole()))
                 {
