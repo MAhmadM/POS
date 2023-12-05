@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e6f4d22-b3f2-4551-93ce-7cec2fe66066" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mongo_jdbc_standalone_1_18.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mongo_jdbc_standalone_1_18.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/ItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ItemDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +66,7 @@
       <workItem from="1700445387704" duration="17000" />
       <workItem from="1700445512984" duration="2764000" />
       <workItem from="1700925966247" duration="56957000" />
-      <workItem from="1701448118224" duration="23305000" />
+      <workItem from="1701448118224" duration="35359000" />
     </task>
     <servers />
   </component>
