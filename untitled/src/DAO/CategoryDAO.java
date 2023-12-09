@@ -23,6 +23,14 @@ public class CategoryDAO {
         datastore.save(category);
     }
 
+    public void selfSave(Category category,Category sub) {
+        Query<Category> query = datastore.createQuery(Category.class)
+                .field("_id").equal(category.getCode());
+
+        UpdateOperations<Category> ops = datastore.createUpdateOperations(Category.class)
+                .add("subcategories", sub);
+        datastore.update(query, ops);
+    }
     public Category findCategoryByName(String name) {
         Query<Category> query = datastore.createQuery(Category.class)
                 .field("name").equal(name);
@@ -84,6 +92,7 @@ public class CategoryDAO {
         }
         return AllProducts;
     }
+
 
     public void addanotherproduct(Product product, Category category)
     {

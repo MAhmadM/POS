@@ -6,33 +6,33 @@ import org.bson.types.ObjectId;
 
 public class Main {
     public static void main(String[] args) {
-//
+
 //        Category subcategory1 = new Category();
-//        subcategory1.setCode("1");
+////        subcategory1.setCode("1");
 //        subcategory1.setName("Subcategory 1");
 //        subcategory1.setDescription("Description for Subcategory 1");
 //
 //        Category subcategory2 = new Category();
-//        subcategory2.setCode("2");
+////        subcategory2.setCode("2");
 //        subcategory2.setName("Subcategory 2");
 //        subcategory2.setDescription("Description for Subcategory 2");
 //
 //
 //        Category subcategory3 = new Category();
-//        subcategory3.setCode("3");
+////        subcategory3.setCode("3");
 //        subcategory3.setName("Subcategory 3");
 //        subcategory3.setDescription("Description for Subcategory 3");
 //
 //
 //        Category subcategory4 = new Category();
-//        subcategory4.setCode("4");
+////        subcategory4.setCode("4");
 //        subcategory4.setName("Subcategory 4");
 //        subcategory4.setDescription("Description for Subcategory 4");
 //
 //
 //
 //        Category mainCategory = new Category();
-//        mainCategory.setCode("0");
+////        mainCategory.setCode("0");
 //        mainCategory.setName("Main Category");
 //        mainCategory.setDescription("Description for Main Category");
 //
@@ -121,7 +121,7 @@ public class Main {
 //        user.setPassword("1234");
 //        UserDAO userDAO = new UserDAO();
 //        userDAO.createUser(user);
-
+//
         LoginGUI login = new LoginGUI();
         login.setVisible(true);
 

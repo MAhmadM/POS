@@ -16,6 +16,8 @@ public class Catalog extends javax.swing.JFrame {
     Category category = new Category();
 
     List<Product> DisplayList ;
+
+    Category SelectedCatagory;
     /**
      * Creates new form Catalog
      */
@@ -49,10 +51,22 @@ public class Catalog extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+
         BackBtn.setText("Back");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackBtnActionPerformed(evt);
+            }
+        });
+
+        AddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBtnActionPerformed(evt);
+            }
+        });
+        DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteBtnActionPerformed(evt);
             }
         });
 
@@ -69,20 +83,23 @@ public class Catalog extends javax.swing.JFrame {
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) CategoryTree.getLastSelectedPathComponent();
 
             if (selectedNode != null) {
+                System.out.println("Null Chek");
                 // Get the selected value as a string
                 String selectedValue = selectedNode.getUserObject().toString();
 
                 Category category1 = new Category();
                 category1=category1.getCategorybyName(selectedValue);
+                SelectedCatagory = category1;
                 DisplayList = category1.getProducts();
-                if(!DisplayList.isEmpty()) {
 
-
+                if(category1!=null)
+                {
                     jTextField1.setText(category1.getName());
                     jTextArea1.setText(category1.getDescription());
-
-                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                    model.setRowCount(0);
+                }
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                if(!DisplayList.isEmpty()) {
                     for (Product op : DisplayList) {
                         Object[] row = {
                                 op.getCode(),
@@ -95,6 +112,7 @@ public class Catalog extends javax.swing.JFrame {
                         model.addRow(row);
                     }
                 }
+
                 System.out.println("Selected value: " + selectedValue);
             }
         });
@@ -205,6 +223,31 @@ public class Catalog extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+
+    private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        SelectedCatagory.remove(SelectedCatagory);
+        Category mainCategory = category.getCategorybyName("Main Category");
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(mainCategory.getName());
+        populateTree(mainCategory, root);
+        DefaultTreeModel treeModel = new DefaultTreeModel(root);
+        CategoryTree.setModel(treeModel);
+        jScrollPane1.setViewportView(CategoryTree);
+    }
+    private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        Category category = new Category();
+        category.setName(jTextField1.getText());
+        category.setDescription(jTextArea1.getText());
+
+        SelectedCatagory.add(category);
+
+        Category mainCategory = category.getCategorybyName("Main Category");
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(mainCategory.getName());
+        populateTree(mainCategory, root);
+        DefaultTreeModel treeModel = new DefaultTreeModel(root);
+        CategoryTree.setModel(treeModel);
+        jScrollPane1.setViewportView(CategoryTree);
+    }
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         dispose();

@@ -3,10 +3,13 @@ package DAO;
 import BusinessLayer.Order;
 import BusinessLayer.Item;
 import BusinessLayer.ItemContainer;
+import BusinessLayer.Product;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
+
+import java.util.List;
 
 public class OrderDAO {
     private final Datastore datastore;
@@ -55,5 +58,10 @@ public class OrderDAO {
             System.out.println(indent + "Quanity Ordered: " + item.getQuantityOrdered());
         }
     }
+    public List<Order> GetALlOrders() {
+        Query<Order> query = datastore.createQuery(Order.class).order("_id");
+        return query.asList();
+    }
+
 }
 

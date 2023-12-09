@@ -1,6 +1,7 @@
 package BusinessLayer;
 import DAO.CategoryDAO;
 import DAO.ProductDAO;
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity("categories")
 public class Category {
     @Id
-    private String code;
+    private ObjectId code;
     private String name;
     private String description;
     @Reference
@@ -19,11 +20,11 @@ public class Category {
 
     @Reference
     private List<Product> products = new ArrayList<>();
-    public String getCode() {
+    public ObjectId getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(ObjectId code) {
         this.code = code;
     }
 
@@ -65,6 +66,8 @@ public class Category {
     public boolean add(Category category){
         subcategories.add(category);
         categoryDAO.createCategory(category);
+        categoryDAO.selfSave(this, category);
+
         return true;
     }
 

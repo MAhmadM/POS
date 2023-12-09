@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="POS@localhost">
   <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.49">
-    <root id="1">
-      <ServerVersion>6.0.8</ServerVersion>
-    </root>
+    <root id="1"/>
     <schema id="2" parent="1" name="admin">
       <LocalIntrospectionTimestamp>2023-11-26.18:59:00</LocalIntrospectionTimestamp>
     </schema>

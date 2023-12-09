@@ -136,8 +136,8 @@ public class ManagerMenu extends javax.swing.JFrame {
     private void Manage_CategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         dispose();
-//        Catalog catalog = new Catalog();
-//        catalog.setVisible(true);
+        Catalog catalog = new Catalog();
+        catalog.setVisible(true);
     }
 
     private void Manage_InventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {

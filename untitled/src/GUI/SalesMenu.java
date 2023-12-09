@@ -464,6 +464,31 @@ public class SalesMenu extends javax.swing.JFrame {
 
     private void ClearCartBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+//        CartItemList.clear();
+//        DefaultTableModel CartModel = (DefaultTableModel) jTable1.getModel();
+//        CartModel.setRowCount(0);
+//        DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
+//        model.setRowCount(0);
+//        for (Product product1 : SearchProductList) {
+//            Object[] row = {
+//                    product1.getCode(),
+//                    product1.getName(),
+//                    product1.getStockQuantity(),
+//                    product1.getPrice(),
+//                    product1.getDescription()
+//            };
+//            model.addRow(row);
+//        }
+        if(CartItemList!=null) {
+            for(Item Refund : CartItemList) {
+                for (Product change : InventoryList) {
+
+                    if (change.getCode().equals(Refund.getProduct().getCode())) {
+                        change.setStockQuantity(change.getStockQuantity() + Refund.getQuantityOrdered());
+                    }
+
+                }
+            }
         CartItemList.clear();
         DefaultTableModel CartModel = (DefaultTableModel) jTable1.getModel();
         CartModel.setRowCount(0);
@@ -479,7 +504,10 @@ public class SalesMenu extends javax.swing.JFrame {
             };
             model.addRow(row);
         }
-
+            textfieldname.setText("");
+            textFieldID.setText("");
+            QuantitySpinner.setValue((int) 1);
+        }
     }
 
     private void CreateBillBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -487,9 +515,19 @@ public class SalesMenu extends javax.swing.JFrame {
         for(Item item : CartItemList) {
             order.add(item);
         }
+        for (Item item : CartItemList) {
+             for(Product product : InventoryList)
+             {
+                 if(product.getCode().equals(item.getProduct().getCode()))
+                 {
+                     product.updateStock(item.getQuantityOrdered()-item.getQuantityOrdered());
+                     System.out.println(product.getStockQuantity());
+                 }
+            }
+        }
         order.setUser(u);
         showBillGenerationDialog();
-        //Container.
+        //Container
     }
     private void UpdateCartBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -564,6 +602,13 @@ public class SalesMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(SelectedCartItem!=null && !CartItemList.isEmpty())
         {
+            for(Product change: InventoryList) {
+
+                if (change.getCode().equals(SelectedCartItem.getProduct().getCode())) {
+                    change.setStockQuantity(change.getStockQuantity() + SelectedCartItem.getQuantityOrdered());
+                }
+
+            }
             int selectedRow = jTable1.getSelectedRow();
             CartItemList.remove(selectedRow);
             DefaultTableModel CartModel = (DefaultTableModel) jTable1.getModel();
@@ -578,6 +623,18 @@ public class SalesMenu extends javax.swing.JFrame {
                         temp.getItemPrice(),
                 };
                 CartModel.addRow(row);
+            }
+            DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
+            model.setRowCount(0);
+            for (Product product : SearchProductList) {
+                Object[] row = {
+                        product.getCode(),
+                        product.getName(),
+                        product.getStockQuantity(),
+                        product.getPrice(),
+                        product.getDescription()
+                };
+                model.addRow(row);
             }
             textfieldname.setText("");
             textFieldID.setText("");

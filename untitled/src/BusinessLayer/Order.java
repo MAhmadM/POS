@@ -8,7 +8,7 @@ import org.mongodb.morphia.annotations.Transient;
 import java.time.Instant;
 import java.util.List;
 
-@Entity("order")
+@Entity("orders")
 public class Order extends ItemContainer{
     private String customer;
     private Instant time;
@@ -69,5 +69,9 @@ public class Order extends ItemContainer{
     OrderDAO orderDAO=new OrderDAO();
     public void save(){
         orderDAO.createOrder(this);
+    }
+    public List<Order> getAllOrders()
+    {
+        return orderDAO.GetALlOrders();
     }
 }
