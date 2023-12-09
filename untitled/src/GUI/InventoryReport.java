@@ -59,6 +59,12 @@ public class InventoryReport extends javax.swing.JFrame {
 
         BackBtn.setText("Back");
 
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null, null, null},
@@ -238,7 +244,12 @@ public class InventoryReport extends javax.swing.JFrame {
     private void GoodRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        dispose();
+        ManagerMenu managerMenu = new ManagerMenu();
+        managerMenu.setVisible(true);
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if(LowRadioButton.isSelected())

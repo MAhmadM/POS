@@ -154,6 +154,9 @@ public class ManagerMenu extends javax.swing.JFrame {
 
     private void Inventory_reportBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        dispose();
+        InventoryReport inventoryReport = new InventoryReport();
+        inventoryReport.setVisible(true);
     }
 
     /**
