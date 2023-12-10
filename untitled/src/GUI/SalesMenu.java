@@ -526,8 +526,34 @@ public class SalesMenu extends javax.swing.JFrame {
             }
         }
         order.setUser(u);
+
         showBillGenerationDialog();
         //Container
+        // reseting every thing
+
+        if(CartItemList!=null) {
+
+            CartItemList.clear();
+            DefaultTableModel CartModel = (DefaultTableModel) jTable1.getModel();
+            CartModel.setRowCount(0);
+            InventoryList = getProductList();
+            SearchProductList = getProductList();
+            DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
+            model.setRowCount(0);
+            for (Product product1 : SearchProductList) {
+                Object[] row = {
+                        product1.getCode(),
+                        product1.getName(),
+                        product1.getStockQuantity(),
+                        product1.getPrice(),
+                        product1.getDescription()
+                };
+                model.addRow(row);
+            }
+            textfieldname.setText("");
+            textFieldID.setText("");
+            QuantitySpinner.setValue((int) 1);
+        }
     }
     private void UpdateCartBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -774,6 +800,7 @@ public class SalesMenu extends javax.swing.JFrame {
                 order.setTime();
                 order.save();
                 InvoiceGenerator.generateInvoice(order);
+
                 // Close the dialog
                 dialog.dispose();
             }
