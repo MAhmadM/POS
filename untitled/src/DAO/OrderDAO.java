@@ -69,8 +69,7 @@ public class OrderDAO {
                 .field("time").greaterThanOrEq(start)
                 .field("time").lessThanOrEq(end);
 
-        QueryResults<Order> results = (QueryResults<Order>) query.fetch();
-        return results.asList();
+        return query.asList();
     }
 }
 

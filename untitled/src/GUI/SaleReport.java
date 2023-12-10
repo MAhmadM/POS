@@ -162,7 +162,8 @@ public class SaleReport extends javax.swing.JFrame {
                         //Selected Product from inventory
                         Order order1 = OnfocusOrders.get(selectedRow);
                         //ItemList.clear();
-                        jTextField1.setText(order1.getCustomer());
+                        jTextField1.setText(order1.getUser().getName());
+                        ItemList.clear();
                         ItemList.addAll(order1.getItems());
                         DefaultTableModel productModel = (DefaultTableModel) jTable2.getModel();
                         productModel.setRowCount(0);
@@ -181,6 +182,9 @@ public class SaleReport extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
+        buttonGroup1.add(jRadioButton2);
+        buttonGroup1.add(jRadioButton3);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
