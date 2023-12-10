@@ -85,7 +85,10 @@ public class LoginGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                // System.out.println(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getId());
                 User u = (user.logIn(usernameTextField.getText(),passwordTextField.getText()));
-                if(Role.SALES_ASSISTANT.equals(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getRole()))
+                if(user.logIn(usernameTextField.getText(),passwordTextField.getText())==null){
+                    DialogueBox.showMessageDialog("Incorrect Username Or Password");
+                }
+                else if(Role.SALES_ASSISTANT.equals(user.logIn(usernameTextField.getText(),passwordTextField.getText()).getRole()))
                 {
                     dispose();
                     SalesMenu salesMenu = new SalesMenu( u );

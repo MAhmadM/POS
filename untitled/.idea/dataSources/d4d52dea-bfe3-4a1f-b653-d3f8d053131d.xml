@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="POS@localhost">
   <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.49">
-    <root id="1"/>
+    <root id="1">
+      <ServerVersion>6.0.8</ServerVersion>
+    </root>
     <schema id="2" parent="1" name="admin">
       <LocalIntrospectionTimestamp>2023-11-26.18:59:00</LocalIntrospectionTimestamp>
     </schema>
@@ -13,7 +15,7 @@
     </schema>
     <schema id="5" parent="1" name="POS">
       <Current>1</Current>
-      <LocalIntrospectionTimestamp>2023-11-28.03:04:46</LocalIntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-10.11:07:50</LocalIntrospectionTimestamp>
     </schema>
     <table id="6" parent="3" name="system.sessions"/>
     <table id="7" parent="4" name="startup_log"/>
@@ -279,43 +281,47 @@
       <DasType>ISODate|91s</DasType>
       <Position>1</Position>
     </column>
-    <column id="78" parent="12" name="_id">
+    <column id="78" parent="12" name="expirydate">
+      <DasType>ISODate|91s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="79" parent="12" name="_id">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="79" parent="12" name="name">
+    <column id="80" parent="12" name="name">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="80" parent="12" name="price">
+    <column id="81" parent="12" name="price">
       <DasType>Double|8s</DasType>
       <Position>1</Position>
     </column>
-    <column id="81" parent="12" name="stockQuantity">
+    <column id="82" parent="12" name="stockQuantity">
       <DasType>Int32|4s</DasType>
       <Position>1</Position>
     </column>
-    <column id="82" parent="12" name="className">
+    <column id="83" parent="12" name="className">
       <DasType>String|12s</DasType>
       <Position>2</Position>
     </column>
-    <column id="83" parent="13" name="_id">
+    <column id="84" parent="13" name="_id">
       <DasType>ObjectId|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="84" parent="13" name="className">
+    <column id="85" parent="13" name="className">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="85" parent="13" name="password">
+    <column id="86" parent="13" name="password">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="86" parent="13" name="role">
+    <column id="87" parent="13" name="role">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="87" parent="13" name="username">
+    <column id="88" parent="13" name="username">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>

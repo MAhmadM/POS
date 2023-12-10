@@ -1,6 +1,8 @@
 package GUI;
 
 
+import BusinessLayer.SalesReport;
+
 /**
  *
  * @author Ahmad Khakan
@@ -150,6 +152,9 @@ public class ManagerMenu extends javax.swing.JFrame {
 
     private void Sale_ReportBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        dispose();
+        SaleReport saleReport = new SaleReport();
+        saleReport.setVisible(true);
     }
 
     private void Inventory_reportBtnActionPerformed(java.awt.event.ActionEvent evt) {

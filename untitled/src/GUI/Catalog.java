@@ -225,28 +225,39 @@ public class Catalog extends javax.swing.JFrame {
 
 
     private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        SelectedCatagory.remove(SelectedCatagory);
-        Category mainCategory = category.getCategorybyName("Main Category");
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(mainCategory.getName());
-        populateTree(mainCategory, root);
-        DefaultTreeModel treeModel = new DefaultTreeModel(root);
-        CategoryTree.setModel(treeModel);
-        jScrollPane1.setViewportView(CategoryTree);
+        if(SelectedCatagory!=null) {
+            SelectedCatagory.remove(SelectedCatagory);
+            Category mainCategory = category.getCategorybyName("Main Category");
+            DefaultMutableTreeNode root = new DefaultMutableTreeNode(mainCategory.getName());
+            populateTree(mainCategory, root);
+            DefaultTreeModel treeModel = new DefaultTreeModel(root);
+            CategoryTree.setModel(treeModel);
+            jScrollPane1.setViewportView(CategoryTree);
+        }
+        else
+        {
+            DialogueBox.showMessageDialog("Please select first");
+        }
     }
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        Category category = new Category();
-        category.setName(jTextField1.getText());
-        category.setDescription(jTextArea1.getText());
 
-        SelectedCatagory.add(category);
+        if(!jTextField1.getText().isEmpty() && !jTextArea1.getText().isEmpty()) {
+            Category category = new Category();
+            category.setName(jTextField1.getText());
+            category.setDescription(jTextArea1.getText());
+            SelectedCatagory.add(category);
 
-        Category mainCategory = category.getCategorybyName("Main Category");
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(mainCategory.getName());
-        populateTree(mainCategory, root);
-        DefaultTreeModel treeModel = new DefaultTreeModel(root);
-        CategoryTree.setModel(treeModel);
-        jScrollPane1.setViewportView(CategoryTree);
+            Category mainCategory = category.getCategorybyName("Main Category");
+            DefaultMutableTreeNode root = new DefaultMutableTreeNode(mainCategory.getName());
+            populateTree(mainCategory, root);
+            DefaultTreeModel treeModel = new DefaultTreeModel(root);
+            CategoryTree.setModel(treeModel);
+            jScrollPane1.setViewportView(CategoryTree);
+        }
+        else{
+            DialogueBox.showMessageDialog("Missing attributes is written");
+        }
     }
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:

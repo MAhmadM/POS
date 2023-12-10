@@ -508,29 +508,35 @@ public class SalesMenu extends javax.swing.JFrame {
             textFieldID.setText("");
             QuantitySpinner.setValue((int) 1);
         }
+        else {
+            DialogueBox.showMessageDialog("Cart is already clear");
+        }
     }
 
     private void CreateBillBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        for(Item item : CartItemList) {
-            order.add(item);
+        if(CartItemList.isEmpty())
+        {
+            DialogueBox.showMessageDialog("Cart is empty");
         }
-        for (Item item : CartItemList) {
-             for(Product product : InventoryList)
-             {
-                 if(product.getCode().equals(item.getProduct().getCode()))
-                 {
-                     product.updateStock(item.getQuantityOrdered()-item.getQuantityOrdered());
-                     System.out.println(product.getStockQuantity());
-                 }
+        else {
+            for (Item item : CartItemList) {
+                order.add(item);
             }
+            for (Item item : CartItemList) {
+                for (Product product : InventoryList) {
+                    if (product.getCode().equals(item.getProduct().getCode())) {
+                        product.updateStock(item.getQuantityOrdered() - item.getQuantityOrdered());
+                        System.out.println(product.getStockQuantity());
+                    }
+                }
+            }
+            order.setUser(u);
+
+            showBillGenerationDialog();
+            //Container
+            // reseting every thing
         }
-        order.setUser(u);
-
-        showBillGenerationDialog();
-        //Container
-        // reseting every thing
-
         if(CartItemList!=null) {
 
             CartItemList.clear();
@@ -795,14 +801,19 @@ public class SalesMenu extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Perform the bill generation logic here
                 String customerName = nameTextField.getText();
+                if(!customerName.isEmpty()) {
+                    order.setCustomer(customerName);
+                    order.setTime();
+                    order.save();
+                    InvoiceGenerator.generateInvoice(order);
 
-                order.setCustomer(customerName);
-                order.setTime();
-                order.save();
-                InvoiceGenerator.generateInvoice(order);
-
-                // Close the dialog
-                dialog.dispose();
+                    // Close the dialog
+                    dialog.dispose();
+                }
+                else
+                {
+                    DialogueBox.showMessageDialog("Please Enter Customer Name");
+                }
             }
         });
 

@@ -1,7 +1,6 @@
 package BusinessLayer;
 
 import DAO.CartDAO;
-import DAO.ItemDAO;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Transient;
 
@@ -37,8 +36,9 @@ public class Cart extends ItemContainer{
     }
 
     @Override
-    public void save() {
+    public boolean save() {
 
+        return false;
     }
 
     @Override

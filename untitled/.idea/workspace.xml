@@ -5,17 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9a1784f-fe3d-461b-8620-edd7c6cac9e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2023_1_57_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2023_1_57_AM__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/DialogueBox.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/DialogueBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/CategoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/ItemTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/OrderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/ProductTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../POS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../POS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/ItemContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/ItemContainer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/InventoryManagement$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/InventoryManagement$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/InventoryManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/InventoryManagement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/SaleReport$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/SaleReport$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/SaleReport.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/SaleReport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/SalesMenu$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/SalesMenu$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/InventoryReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/InventoryReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/ItemContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Catalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Catalog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/InventoryManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/InventoryManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ManagerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ManagerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/SaleReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SaleReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/SalesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SalesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -31,19 +69,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "E:/POS/POS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="GUI" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -53,6 +107,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701821358073</updated>
       <workItem from="1701821359886" duration="593000" />
+      <workItem from="1702209925495" duration="1504000" />
     </task>
     <servers />
   </component>

@@ -2,9 +2,7 @@ package BusinessLayer;
 
 //import DAO.ItemContainerDAO;
 import DAO.ItemDAO;
-import DAO.ProductDAO;
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 import org.mongodb.morphia.annotations.Transient;
@@ -56,5 +54,5 @@ public abstract class ItemContainer {
     @Transient
     ItemDAO itemDAO=new ItemDAO();
 
-    public abstract void save() ;
+    public abstract boolean save() ;
 }

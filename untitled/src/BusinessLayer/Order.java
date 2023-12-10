@@ -1,6 +1,5 @@
 package BusinessLayer;
 
-import DAO.CartDAO;
 import DAO.OrderDAO;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Transient;
@@ -68,8 +67,9 @@ public class Order extends ItemContainer{
     }
     @Transient
     OrderDAO orderDAO=new OrderDAO();
-    public void save(){
+    public boolean save(){
         orderDAO.createOrder(this);
+        return true;
     }
     public List<Order> getAllOrders()
     {

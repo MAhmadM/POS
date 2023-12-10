@@ -364,6 +364,21 @@ public class InventoryManagement extends javax.swing.JFrame {
         if(!ProductTextField.getText().isEmpty() && !Code_idTextField.getText().isEmpty() &&  !PriceTextField.getText().isEmpty() && !QuantityTestField.getText().isEmpty() && !jTextArea1.getText().isEmpty() ) {
             if (CategoryDropDown.getSelectedItem() != null && !CategoryDropDown.getSelectedItem().toString().equals("Null"))
             {
+                try {
+                    int quantity = Integer.parseInt(QuantityTestField.getText());
+                    // Process the quantity as it's an integer
+                } catch (NumberFormatException e) {
+                    // Handle the case where the input is not an integer
+                    DialogueBox.showMessageDialog("Please enter a valid integer quantity!");
+                }
+                try {
+                    double price = Double.parseDouble(PriceTextField.getText());
+                    // Process the price as it's a valid double value
+                } catch (NumberFormatException e) {
+                    // Handle the case where the input is not a valid double
+                    DialogueBox.showMessageDialog("Please enter a valid price!");
+                }
+
                 System.out.println("HEllo");
                 Product p = new Product();
                 p.setCode(Code_idTextField.getText());
@@ -384,8 +399,9 @@ public class InventoryManagement extends javax.swing.JFrame {
                 UpdateField();
             }
         }
-        //else where Dialoge Message of Missing attributes is written
-
+        else {
+            DialogueBox.showMessageDialog("Missing attributes is written");
+        }
     }
 
 
@@ -482,6 +498,9 @@ public class InventoryManagement extends javax.swing.JFrame {
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        dispose();
+        ManagerMenu managerMenu = new ManagerMenu();
+        managerMenu.setVisible(true);
     }
 
     /**

@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
 
 public class Main {
     public static void main(String[] args) {
-
+//
 //        Category subcategory1 = new Category();
 ////        subcategory1.setCode("1");
 //        subcategory1.setName("Subcategory 1");
@@ -59,7 +59,7 @@ public class Main {
 //        mainCategory.add(subcategory2);
 //        CategoryDAO categoryDAO= new CategoryDAO();
 //        categoryDAO.createCategory(mainCategory);
-//
+
 //        Category foundCategory = categoryDAO.findCategoryByName("Main Category");
 //        if (foundCategory != null) {
 //            System.out.println("Found category: " + foundCategory.getName());

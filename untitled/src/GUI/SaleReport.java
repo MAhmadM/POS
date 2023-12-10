@@ -323,6 +323,9 @@ public class SaleReport extends javax.swing.JFrame {
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        dispose();
+        ManagerMenu managerMenu = new ManagerMenu();
+        managerMenu.setVisible(true);
     }
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,4 +383,5 @@ public class SaleReport extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration
+
 }
