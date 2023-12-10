@@ -1,8 +1,5 @@
 package GUI;
 
-
-import BusinessLayer.SalesReport;
-
 /**
  *
  * @author Ahmad Khakan

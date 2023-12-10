@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="untitled:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9a1784f-fe3d-461b-8620-edd7c6cac9e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/GUI/DialogueBox.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/DialogueBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/CategoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/ItemTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/OrderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/ProductTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/UserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../POS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../POS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/ItemContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/ItemContainer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/InventoryManagement$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/InventoryManagement$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/InventoryManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/InventoryManagement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Cart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/InventoryReport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Manager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/Report.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/SalesAssistant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/SalesReport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/BusinessLayer/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/DAO/CartDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/DAO/ItemDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/DAO/ItemDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/Catalog.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/Catalog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$3.class" afterDir="false" />
@@ -26,22 +29,22 @@
       <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/ManagerMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/SaleReport$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/SaleReport$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/SaleReport.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/SaleReport.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/SalesMenu$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/SalesMenu$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d4d52dea-bfe3-4a1f-b653-d3f8d053131d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/POS/GUI/SalesMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/POS/GUI/SalesMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/ItemContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Cart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/InventoryReport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/Report.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/SalesAssistant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/SalesReport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusinessLayer/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusinessLayer/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/CartDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/ItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ItemDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Catalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Catalog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/InventoryManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/InventoryManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ManagerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ManagerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/SaleReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SaleReport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/SalesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SalesMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,11 +85,14 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "E:/POS/POS",
+    "last_opened_file_path": "E:/POS/POS/untitled",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -107,7 +113,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701821358073</updated>
       <workItem from="1701821359886" duration="593000" />
-      <workItem from="1702209925495" duration="1504000" />
+      <workItem from="1702209925495" duration="4055000" />
     </task>
     <servers />
   </component>
