@@ -24,6 +24,7 @@ public class InventoryManagement extends javax.swing.JFrame {
     List<Product> InventoryList;
 
     Product SelectedProduct;
+
     /**
      * Creates new form InventoryManagement
      */
@@ -60,6 +61,7 @@ public class InventoryManagement extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         Deletebtn = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,11 +76,11 @@ public class InventoryManagement extends javax.swing.JFrame {
             }
         });
 
-//        QuantityTestField.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                QuantityTestFieldActionPerformed(evt);
-//            }
-//        });
+        QuantityTestField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuantityTestFieldActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Quantity");
 
@@ -93,8 +95,6 @@ public class InventoryManagement extends javax.swing.JFrame {
             boolean[] canEdit = new boolean [] {
                     false, false, false, false, false
             };
-
-
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -145,6 +145,8 @@ public class InventoryManagement extends javax.swing.JFrame {
             }
         });
 
+
+
         jScrollPane1.setViewportView(InventoryTable);
 
         jLabel4.setText("Code");
@@ -156,16 +158,15 @@ public class InventoryManagement extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
         jLabel5.setText("Existing Inventory");
 
         jLabel6.setText("Price");
 
-//        PriceTextField.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                PriceTextFieldActionPerformed(evt);
-//            }
-//        });
+        PriceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PriceTextFieldActionPerformed(evt);
+            }
+        });
 
         AddProductbtn.setText("Add New Product");
         AddProductbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -183,37 +184,38 @@ public class InventoryManagement extends javax.swing.JFrame {
 
         jLabel7.setText("Category");
 
+
 //
         List<String> categoriesList=new ArrayList<>();
         categoriesList.add("");
         categoriesList.addAll(category.getCategories());
         String[] categoriesArray = categoriesList.toArray(new String[0]);
         CategoryDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(categoriesArray));
-
-
-        //CategoryDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(category.getCategories().toArray(new String[0])));
-//        CategoryDropDown.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                CategoryDropDownActionPerformed(evt);
-//            }
-//        });
+        CategoryDropDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategoryDropDownActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Description");
 
         jTextArea1.setColumns(20);
-
         jTextArea1.setRows(5);
-
         jScrollPane2.setViewportView(jTextArea1);
 
         Deletebtn.setBackground(new java.awt.Color(255, 51, 51));
-
         Deletebtn.setForeground(new java.awt.Color(255, 255, 255));
-
         Deletebtn.setText("Delete Product");
         Deletebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeletebtnActionPerformed(evt);
+            }
+        });
+
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
             }
         });
 
@@ -226,12 +228,13 @@ public class InventoryManagement extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(BackBtn)
+                                                .addGap(302, 302, 302)
+                                                .addComponent(jLabel1))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(105, 105, 105)
@@ -263,7 +266,9 @@ public class InventoryManagement extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addComponent(jLabel1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(BackBtn))
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19)
@@ -305,6 +310,13 @@ public class InventoryManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    private void QuantityTestFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void PriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
 
     private void UpdatebtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -346,6 +358,7 @@ public class InventoryManagement extends javax.swing.JFrame {
 
     }
 
+
     private void AddProductbtnActionPerformed(java.awt.event.ActionEvent evt) {
 
         if(!ProductTextField.getText().isEmpty() && !Code_idTextField.getText().isEmpty() &&  !PriceTextField.getText().isEmpty() && !QuantityTestField.getText().isEmpty() && !jTextArea1.getText().isEmpty() ) {
@@ -371,9 +384,11 @@ public class InventoryManagement extends javax.swing.JFrame {
                 UpdateField();
             }
         }
-               //else where Dialoge Message of Missing attributes is written
+        //else where Dialoge Message of Missing attributes is written
 
     }
+
+
 
 
     private void Code_idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,7 +407,9 @@ public class InventoryManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-
+    private void CategoryDropDownActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
 
     private void DeletebtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -462,6 +479,11 @@ public class InventoryManagement extends javax.swing.JFrame {
         System.out.println("Button 1");
     }
 
+
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -499,6 +521,7 @@ public class InventoryManagement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JButton AddProductbtn;
+    private javax.swing.JButton BackBtn;
     private javax.swing.JComboBox<String> CategoryDropDown;
     private javax.swing.JTextField Code_idTextField;
     private javax.swing.JTable InventoryTable;
@@ -519,7 +542,6 @@ public class InventoryManagement extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration
-
 
     private List<Product> getProductList() {
         ProductDAO productDAO = new ProductDAO();
