@@ -162,7 +162,7 @@ public class SaleReport extends javax.swing.JFrame {
                         //Selected Product from inventory
                         Order order1 = OnfocusOrders.get(selectedRow);
                         //ItemList.clear();
-
+                        jTextField1.setText(order1.getCustomer());
                         ItemList.addAll(order1.getItems());
                         DefaultTableModel productModel = (DefaultTableModel) jTable2.getModel();
                         productModel.setRowCount(0);
@@ -273,6 +273,48 @@ public class SaleReport extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        if(jRadioButton1.isSelected())
+        {
+            Order order = new Order();
+            OnfocusOrders.clear();
+            OnfocusOrders = order.getOrdersForCurrentDay();
+            if(OnfocusOrders==null || OnfocusOrders.isEmpty())
+            {
+                OnfocusOrders = TotalOrders;
+            }
+        }
+        else if(jRadioButton2.isSelected())
+        {
+            Order order = new Order();
+            OnfocusOrders.clear();
+            OnfocusOrders = order.getOrdersForCurrentWeek();
+            if(OnfocusOrders==null || OnfocusOrders.isEmpty())
+            {
+                OnfocusOrders = TotalOrders;
+            }
+        }
+        else if (jRadioButton3.isSelected())
+        {
+            Order order = new Order();
+            OnfocusOrders.clear();
+            OnfocusOrders = order.getOrdersForCurrentMonth();
+            if(OnfocusOrders==null || OnfocusOrders.isEmpty())
+            {
+                OnfocusOrders = TotalOrders;
+            }
+        }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for (Order order1 : OnfocusOrders) {
+            Object[] row = {
+                    order1.getId(),
+                    order1.getCustomer(),
+                    order1.getTime(),
+                    order1.total(),
+            };
+            model.addRow(row);
+        }
+
     }
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {

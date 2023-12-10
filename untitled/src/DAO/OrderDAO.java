@@ -7,8 +7,10 @@ import BusinessLayer.Product;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.QueryResults;
 import org.mongodb.morphia.query.UpdateOperations;
 
+import java.time.Instant;
 import java.util.List;
 
 public class OrderDAO {
@@ -62,6 +64,15 @@ public class OrderDAO {
         Query<Order> query = datastore.createQuery(Order.class).order("_id");
         return query.asList();
     }
+    public List<Order> getOrdersWithinTimeFrame(Instant start, Instant end) {
+        Query<Order> query = datastore.createQuery(Order.class)
+                .field("time").greaterThanOrEq(start)
+                .field("time").lessThanOrEq(end);
 
+        QueryResults<Order> results = (QueryResults<Order>) query.fetch();
+        return results.asList();
+    }
 }
+
+
 
